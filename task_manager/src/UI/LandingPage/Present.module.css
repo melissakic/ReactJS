@@ -1,0 +1,149 @@
+.main{
+    overflow: hidden;
+}
+
+.body{
+    animation: slide ease 2s;
+    animation-iteration-count: 1;
+    background-color: #2A2F4F;
+    box-shadow: 4px 14px 35px -7px rgba(0,0,0,0.45);
+    height: fit-content;
+    
+}
+.body img{
+    display: flex;
+    transform: scale(60%);
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+.body_down{
+    animation: drift_left ease 2s;
+    animation-iteration-count: 1;
+    text-align: center;
+    background-color: #2A2F4F;
+    box-shadow: 4px 14px 35px -7px rgba(0,0,0,0.45);
+}
+
+.contact{
+    animation: drift_right ease 2s;
+    animation-iteration-count: 1;
+    color: #2A2F4F;
+    text-align:center;
+    margin-top: 1%;
+}
+
+
+.list{
+    display: inline-block;
+    text-align: left;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+
+.welcome{
+    color: white;
+    display: block;
+    font-size: 25px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card{
+    animation: entry 2s;
+    animation-iteration-count: 1;
+    display: block;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 15px;
+    margin-top: 10%;
+    margin-bottom:10%;
+    box-shadow: 0px 5px 70px 0px rgba(0,0,0,0.18);
+}
+.card:hover{
+    transition: 1s;
+    transform: scale(1.2);
+}
+
+.card_content{
+    display: flex;
+    justify-content: center;
+}
+
+.icon{
+    color:#2A2F4F;
+    padding-top:5% ;
+    padding-bottom:5% ;
+   transform: scale(3);
+}
+
+.card_actions{
+    background-color:#2A2F4F;
+    display: flex;
+    justify-content: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+   @keyframes entry {
+	0% {
+		opacity: 0;
+		transform: rotate(-540deg) scale(0);
+	}
+
+	100% {
+		opacity: 1;
+		transform: rotate(0) scale(1);
+	}
+}
+
+@keyframes slide {
+	0% {
+		transform: scale(0);
+		transform-origin: 50% 0%;
+	}
+
+	100% {
+		transform: scale(1);
+		transform-origin: 50% 0%;
+	}
+}
+
+@keyframes drift_right {
+	0% {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes drift_left {
+	0% {
+		opacity: 0;
+		transform: translateX(-50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+.help{
+    display: flex;
+    margin-left: 100%;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
