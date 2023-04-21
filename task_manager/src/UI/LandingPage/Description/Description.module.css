@@ -1,0 +1,32 @@
+.body_down{
+    animation: drift_left ease 2s;
+    animation-iteration-count: 1;
+    text-align: center;
+    background-color: #2A2F4F;
+    box-shadow: 4px 14px 35px -7px rgba(0,0,0,0.45);
+}
+
+.list{
+    display: inline-block;
+    text-align: left;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+
+@keyframes drift_left {
+	0% {
+		opacity: 0;
+		transform: translateX(-50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+}

@@ -1,0 +1,19 @@
+.contact{
+    animation: drift_right ease 2s;
+    animation-iteration-count: 1;
+    color: #2A2F4F;
+    text-align:center;
+    margin-top: 5px;
+}
+
+@keyframes drift_right {
+	0% {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}

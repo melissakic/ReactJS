@@ -1,0 +1,47 @@
+.card{
+    animation: entry 2s;
+    animation-iteration-count: 1;
+    display: block;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 15px;
+    margin-top: 10%;
+    margin-bottom:10%;
+    box-shadow: 0px 5px 70px 0px rgba(0,0,0,0.18);
+}
+
+.card_content{
+    display: flex;
+    justify-content: center;
+}
+.icon{
+    color:#2A2F4F;
+    padding-top:5% ;
+    padding-bottom:5% ;
+   transform: scale(3);
+}
+
+.card_actions{
+    background-color:#2A2F4F;
+    display: flex;
+    justify-content: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.card:hover{
+    transition: 1s;
+    transform: scale(1.2);
+}
+
+@keyframes entry {
+	0% {
+		opacity: 0;
+		transform: rotate(-540deg) scale(0);
+	}
+
+	100% {
+		opacity: 1;
+		transform: rotate(0) scale(1);
+	}
+}
