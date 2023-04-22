@@ -1,5 +1,5 @@
 import Present from "./UI/LandingPage/Present";
-import Login from "./UI/Login/Login";
+import Login from "./Pages/Login/Login";
 function App() {
   return (
     <Login/>

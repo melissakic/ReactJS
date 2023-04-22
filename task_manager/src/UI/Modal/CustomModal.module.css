@@ -1,0 +1,27 @@
+.modal_body{
+    animation: fade 2s ease 0s 1 normal forwards;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 30%; 
+  }
+
+
+  
+  .modal_content{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+
+  @keyframes fade {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+		
+	}
+}
