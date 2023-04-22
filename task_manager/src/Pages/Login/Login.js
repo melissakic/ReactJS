@@ -15,7 +15,7 @@ export default function Login() {
   //Form
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailReset, setEmailReset] = useState("");
+  const [emailReset, setEmailReset] = useState();
   const [error, setError] = useState(false);
 
   const {
@@ -29,7 +29,7 @@ export default function Login() {
     console.log(password);
   };
   const resetPassword = () => {
-    if (emailReset.length == 0) {
+    if (emailReset==null || emailReset.length == 0)   {
       setError(true);
     } else handleClose();
   };

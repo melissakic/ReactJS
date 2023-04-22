@@ -1,0 +1,27 @@
+.input{
+    text-align: center;
+    width: 90%;
+    padding: 5%;
+    margin-bottom: 10px;
+    font-size: 20px;
+    border-radius: 15px;
+    border-width: 1px;
+}
+
+.input:focus{
+    background-color: #A5D7E8;
+    border: none;
+}
+
+.button{
+    font-size: 20px;
+    border-radius: 15px;
+    padding: 5%;
+    color: white;
+    background-color: #19376D;
+}
+
+.button:active{
+    background-color:#A5D7E8;
+    transition: 100ms;
+}

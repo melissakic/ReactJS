@@ -1,0 +1,22 @@
+.body{
+    position:fixed;
+    top: 4rem;
+    height: 100%;
+    width: 100%;
+    background-color: #A5D7E8;
+   
+}
+
+.content {
+    position: relative;
+    left: 7.5%;
+    top:5%;
+    width: 85%;
+    height: 80%;
+    border-radius: 5%;
+    position: absolute;
+    background-color: #576CBC;
+    box-shadow: 15px 17px 70px -31px rgba(0,0,0,0.62);
+    z-index: 9;
+
+}

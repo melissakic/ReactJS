@@ -1,0 +1,15 @@
+.button{
+    position: absolute;
+    left: 45%;
+    width:40px;
+    height: 40px;
+    margin-top: 3%;
+    border-radius: 100%;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.button:active {
+    background-color: #A5D7E8;
+    transition: 400ms;
+}
