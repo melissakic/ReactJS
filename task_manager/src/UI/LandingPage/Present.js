@@ -1,5 +1,5 @@
 import style from "./Present.module.css";
-import Avatar from "./Avatar/Avatar"
+import Avatar from "./Avatar/Avatar";
 import AuthLinks from "./AuthLinks/AuthLinks";
 import Description from "./Description/Description";
 import Contact from "./Contact/Contact";
@@ -7,10 +7,10 @@ import Contact from "./Contact/Contact";
 export default function Present() {
   return (
     <div className={style.main}>
-      <Avatar/>
+      <Avatar />
       <AuthLinks />
-      <Description/>
-      <Contact/>
+      <Description />
+      <Contact />
     </div>
   );
 }

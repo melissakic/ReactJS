@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import EmailInput from "../../Components/EmailInput/EmailInput";
 import PassInput from "../../Components/PassInput/PassInput";
+import CustomCard from "../../UI/CustomCard/CustomCard";
 
 export default function SignUp() {
   //Form
@@ -26,33 +27,27 @@ export default function SignUp() {
 
   return (
     <div className={style.body}>
-      <Card className={style.form_body} sx={{ backgroundColor: "#E5BEEC" }}>
-        <CardContent>
-          <Stack spacing={3}>
-            <p className={style.welcome}>Join our community!</p>
-            <EmailInput
-              register={register}
-              errors={errors}
-              setEmail={setEmail}
-            />
-            <PassInput
-              register={register}
-              errors={errors}
-              setPassword={setPassword}
-            />
-            <Button
-              onClick={handleSubmit(submit)}
-              variant="contained"
-              sx={{ backgroundColor: "#2A2F4F" }}
-            >
-              Sign up
-            </Button>
-            <Button variant="contained" sx={{ backgroundColor: "#2A2F4F" }}>
-              Go to login
-            </Button>
-          </Stack>
-        </CardContent>
-      </Card>
+      <CustomCard backgroundColor="#E5BEEC">
+        <Stack spacing={3}>
+          <p className={style.welcome}>Join our community!</p>
+          <EmailInput register={register} errors={errors} setEmail={setEmail} />
+          <PassInput
+            register={register}
+            errors={errors}
+            setPassword={setPassword}
+          />
+          <Button
+            onClick={handleSubmit(submit)}
+            variant="contained"
+            sx={{ backgroundColor: "#2A2F4F" }}
+          >
+            Sign up
+          </Button>
+          <Button variant="contained" sx={{ backgroundColor: "#2A2F4F" }}>
+            Go to login
+          </Button>
+        </Stack>
+      </CustomCard>
     </div>
   );
 }
