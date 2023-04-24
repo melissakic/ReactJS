@@ -11,7 +11,7 @@ export default function AuthLinks() {
   return (
     <Grid container>
       <Grid item xs={12} md={6}>
-        <Card variant="outlined" className={style.card}>
+        <Card className={style.card}>
           <CardContent className={style.card_content}>
             <PersonIcon className={style.icon} />
           </CardContent>
@@ -21,7 +21,7 @@ export default function AuthLinks() {
         </Card>
       </Grid>
       <Grid item xs={12} md={6}>
-        <Card variant="outlined" className={style.card}>
+        <Card className={style.card}>
           <CardContent className={style.card_content}>
             <PersonAddIcon className={style.icon} />
           </CardContent>

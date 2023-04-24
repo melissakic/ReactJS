@@ -1,9 +1,6 @@
 .main{
     overflow: hidden;
-}
-
-.end{
-    position: fixed !important;;
-    height: 1000px;
-    background-color: aqua;
+    background-color: #917FB3;
+    height: 100vh;
+    width: 100vw;
 }
