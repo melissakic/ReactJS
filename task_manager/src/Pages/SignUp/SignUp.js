@@ -1,6 +1,4 @@
 import style from "./SignUp.module.css";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useState } from "react";
@@ -8,11 +6,13 @@ import { useForm } from "react-hook-form";
 import EmailInput from "../../Components/EmailInput/EmailInput";
 import PassInput from "../../Components/PassInput/PassInput";
 import CustomCard from "../../UI/CustomCard/CustomCard";
+import UsernameInput from "../../Components/CustomInput/Username";
 
 export default function SignUp() {
   //Form
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
 
   const {
     register,
@@ -35,6 +35,11 @@ export default function SignUp() {
             register={register}
             errors={errors}
             setPassword={setPassword}
+          />
+          <UsernameInput
+            register={register}
+            errors={errors}
+            setInput={setUsername}
           />
           <Button
             onClick={handleSubmit(submit)}

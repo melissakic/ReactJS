@@ -1,0 +1,21 @@
+.bar{
+    background-color: #2A2F4F !important;
+}
+.links{
+    margin-left: auto;
+}
+
+.icons{
+    font-size: larger !important;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .name {
+      display: none ;
+    }
+    .bar{
+        background-color: #2A2F4F !important;
+        height: 60px;
+    }
+  }
