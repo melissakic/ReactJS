@@ -5,7 +5,7 @@ import Profile from "./Pages/Profile/Profile";
 import Chart from "./Pages/Chart/Chart";
 
 function App() {
-  return <Profile />;
+  return <SignUp />;
 }
 
 export default App;
