@@ -8,7 +8,7 @@ export default function ResetMod(props) {
     <CustomModal open={props.open} onClose={props.onClose}>
       <TextField
         error={props.error}
-        label="Email"
+        label={props.label}
         variant="filled"
         className={style.input}
         onChange={(event) => {

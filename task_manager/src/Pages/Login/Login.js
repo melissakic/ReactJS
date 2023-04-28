@@ -72,6 +72,7 @@ export default function Login() {
       </CustomCard>
 
       <ResetMod
+        label="Email"
         open={open}
         onClose={handleClose}
         error={error}

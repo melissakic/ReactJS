@@ -9,6 +9,7 @@
     width: auto;
     min-width: 50%;
 	max-width: 400px;
+	overflow: scroll;
     height: auto;
 	box-shadow: 11px 18px 39px -5px rgba(0,0,0,0.39) !important;
 }
@@ -59,9 +60,11 @@
 
 @media (max-width: 1300px) {
     .card{
+		width: 80%;
 		min-width:65%;
-		height: auto;
-		overflow: scroll;
+		height: 80%;
+		overflow-y:scroll !important;
+		overflow-x: hidden !important;
 	}
 
   }
