@@ -9,16 +9,10 @@ import { IconButton, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Tooltip from "@mui/material/Tooltip";
-import InputAdornment from "@mui/material/InputAdornment";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Button from "@mui/material/Button";
 import { useState } from "react";
-import CustomModal from "../../UI/Modal/CustomModal";
+import LogTimeModal from "../../Components/LogTimeModal/LogTimeModal";
+import EditModal from "../../Components/EditModal/EditModal";
 
 export default function MyTasks() {
   const [openLog, setOpenLog] = useState(false);
@@ -152,103 +146,20 @@ export default function MyTasks() {
             })}
           </Stack>
         </CustomCard>
-        <CustomModal open={openLog} onClose={handleClose}>
-          <Stack alignItems="center" justifyContent="center">
-            <TextField
-              sx={{
-                marginX: "40%",
-                marginTop: "10px",
-              }}
-              type="number"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="start">h</InputAdornment>
-                ),
-              }}
-            />
-            <Button
-              onClick={logTime}
-              variant="contained"
-              sx={{
-                backgroundColor: "#2A2F4F",
-                marginTop: "10px",
-              }}
-            >
-              Save
-            </Button>
-          </Stack>
-        </CustomModal>
-        <CustomModal open={openEdit} onClose={handleCloseEdit}>
-          <Stack alignItems="center" justifyContent="center">
-            <Stack direction="row">
-              <TextField label="Title" sx={{ marginX: "5px" }} />
-              <TextField label="Description" sx={{ marginX: "5px" }} />
-            </Stack>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DatePicker"]}>
-                <DatePicker label="Task deadline" />
-              </DemoContainer>
-            </LocalizationProvider>
-            <TextField
-              label="Estimated time"
-              type="number"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="start">h</InputAdornment>
-                ),
-              }}
-              sx={{ marginY: "10px" }}
-            />
-            <Stack direction="row">
-              <ToggleButtonGroup
-                color="primary"
-                value={alignment}
-                exclusive
-                onChange={handleChange}
-                aria-label="Platform"
-                sx={{
-                  marginRight: "5px",
-                  backgroundColor: "#2A2F4F",
-                }}
-              >
-                <ToggleButton value="High" sx={{ color: "white" }}>
-                  High
-                </ToggleButton>
-                <ToggleButton value="Medium" sx={{ color: "white" }}>
-                  Medium
-                </ToggleButton>
-                <ToggleButton value="Low" sx={{ color: "white" }}>
-                  Low
-                </ToggleButton>
-              </ToggleButtonGroup>
-              <ToggleButtonGroup
-                color="primary"
-                value={status}
-                exclusive
-                onChange={handleChangeStatus}
-                aria-label="Platform"
-                sx={{ marginLeft: "5px", backgroundColor: "#2A2F4F" }}
-              >
-                <ToggleButton value="Active" sx={{ color: "white" }}>
-                  Active
-                </ToggleButton>
-                <ToggleButton value="Completed" sx={{ color: "white" }}>
-                  Completed
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </Stack>
-            <Button
-              onClick={edit}
-              variant="contained"
-              sx={{
-                backgroundColor: "#2A2F4F",
-                marginTop: "10px",
-              }}
-            >
-              Save
-            </Button>
-          </Stack>
-        </CustomModal>
+        <LogTimeModal
+          openLog={openLog}
+          handleClose={handleClose}
+          logTime={logTime}
+        />
+        <EditModal
+          openEdit={openEdit}
+          handleCloseEdit={handleCloseEdit}
+          edit={edit}
+          handleChangeStatus={handleChangeStatus}
+          handleChange={handleChange}
+          alignment={alignment}
+          status={status}
+        />
       </div>
     </>
   );
