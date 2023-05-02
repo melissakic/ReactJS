@@ -6,8 +6,11 @@ import Button from "@mui/material/Button";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonIcon from "@mui/icons-material/Person";
 import Grid from "@mui/material/Grid";
+import { useNavigate } from "react-router-dom";
 
 export default function AuthLinks() {
+  const navigation = useNavigate();
+
   return (
     <Grid container>
       <Grid item xs={12} md={6}>
@@ -16,7 +19,14 @@ export default function AuthLinks() {
             <PersonIcon className={style.icon} />
           </CardContent>
           <CardActions className={style.card_actions}>
-            <Button sx={{ color: "white", fontWeight: "600" }}>Login</Button>
+            <Button
+              sx={{ color: "white", fontWeight: "600" }}
+              onClick={() => {
+                navigation("/login");
+              }}
+            >
+              Login
+            </Button>
           </CardActions>
         </Card>
       </Grid>
@@ -26,7 +36,9 @@ export default function AuthLinks() {
             <PersonAddIcon className={style.icon} />
           </CardContent>
           <CardActions className={style.card_actions}>
-            <Button sx={{ color: "white", fontWeight: "600" }}>Sign up</Button>
+            <Button sx={{ color: "white", fontWeight: "600" }} onClick={()=>{
+              navigation("/signup");
+            }}>Sign up</Button>
           </CardActions>
         </Card>
       </Grid>

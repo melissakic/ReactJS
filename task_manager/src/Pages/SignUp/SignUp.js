@@ -7,8 +7,10 @@ import EmailInput from "../../Components/EmailInput/EmailInput";
 import PassInput from "../../Components/PassInput/PassInput";
 import CustomCard from "../../UI/CustomCard/CustomCard";
 import UsernameInput from "../../Components/CustomInput/Username";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
+  const navigation = useNavigate();
   //Form
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,7 +50,13 @@ export default function SignUp() {
           >
             Sign up
           </Button>
-          <Button variant="contained" sx={{ backgroundColor: "#2A2F4F" }}>
+          <Button
+            variant="contained"
+            sx={{ backgroundColor: "#2A2F4F" }}
+            onClick={() => {
+              navigation("/login");
+            }}
+          >
             Go to login
           </Button>
         </Stack>

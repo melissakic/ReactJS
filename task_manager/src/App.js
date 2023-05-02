@@ -1,4 +1,4 @@
-import Present from "./UI/LandingPage/Present";
+import Present from "./Pages/LandingPage/Present";
 import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/SignUp/SignUp";
 import Profile from "./Pages/Profile/Profile";
@@ -7,7 +7,7 @@ import MyTasks from "./Pages/MyTasks/MyTasks";
 import AllTasks from "./Pages/AllTasks/AllTasks";
 
 function App() {
-  return <AllTasks />;
+  return <Present />;
 }
 
 export default App;

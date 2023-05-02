@@ -9,8 +9,10 @@ import EmailInput from "../../Components/EmailInput/EmailInput";
 import PassInput from "../../Components/PassInput/PassInput";
 import ResetMod from "./PassResetModal/ResetMod";
 import CustomCard from "../../UI/CustomCard/CustomCard";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigation = useNavigate();
   //Modal
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
@@ -65,7 +67,13 @@ export default function Login() {
           >
             Login
           </Button>
-          <Button variant="contained" sx={{ backgroundColor: "#2A2F4F" }}>
+          <Button
+            variant="contained"
+            sx={{ backgroundColor: "#2A2F4F" }}
+            onClick={() => {
+              navigation("/signup");
+            }}
+          >
             Go to sign up
           </Button>
         </Stack>

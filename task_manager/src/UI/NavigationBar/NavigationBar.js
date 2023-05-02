@@ -7,9 +7,10 @@ import Tooltip from "@mui/material/Tooltip";
 import TooggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import TooggleButton from "@mui/material/ToggleButton";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import avatar from "./../LandingPage/Avatar/avatar.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function Bar() {
+  const navigation = useNavigate();
   return (
     <AppBar position="static" className={style.bar}>
       <Toolbar>
@@ -22,22 +23,38 @@ export default function Bar() {
         </TooggleButtonGroup>
         <Box className={style.links}>
           <Tooltip title="All tasks">
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                navigation("/alltasks");
+              }}
+            >
               <AssignmentIcon className={style.icons} />
             </IconButton>
           </Tooltip>
           <Tooltip title="My tasks">
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                navigation("/mytasks");
+              }}
+            >
               <AssignmentIndIcon className={style.icons} />
             </IconButton>
           </Tooltip>
           <Tooltip title="Statistics">
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                navigation("/chart");
+              }}
+            >
               <BarChartIcon className={style.icons} />
             </IconButton>
           </Tooltip>
           <Tooltip title="Profile">
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                navigation("/profile");
+              }}
+            >
               <AccountCircleIcon className={style.icons} />
             </IconButton>
           </Tooltip>
