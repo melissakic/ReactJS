@@ -52,7 +52,10 @@ export default function Profile() {
         <CustomCard backgroundColor="#2A2F4F">
           <Grid container justify="center" align="center">
             <Grid item md={6} xs={12}>
-              <AccountCircleIcon className={style.profile} />
+              <AccountCircleIcon
+                className={style.profile}
+                sx={{ flexGrow: 1 }}
+              />
               {linkSent && (
                 <Alert sx={{ marginX: "20px", marginY: "20px" }}>
                   {linkSentText}
@@ -60,7 +63,7 @@ export default function Profile() {
               )}
             </Grid>
             <Grid item md={6} xs={12} className={style.info}>
-              <h1>My profile</h1>
+              <p className={style.title}>My profile</p>
               <Stack className={style.userData}>
                 <Stack
                   direction="row"

@@ -14,13 +14,24 @@ export default function Bar() {
   return (
     <AppBar position="static" className={style.bar}>
       <Toolbar>
-        <Typography sx={{ flexGrow: 0.5 }} variant="h5" className={style.name}>
-          TaskPlanner
-        </Typography>
         <TooggleButtonGroup value="bs" sx={{ backgroundColor: "white" }}>
           <TooggleButton value="en">English</TooggleButton>
           <TooggleButton value="bs">Bosnian</TooggleButton>
         </TooggleButtonGroup>
+        <IconButton
+          sx={{ flexGrow: 1 }}
+          onClick={() => {
+            navigation("/");
+          }}
+        >
+          <Typography
+            variant="h4"
+            sx={{ color: "white" }}
+            className={style.name}
+          >
+            TaskPlanner
+          </Typography>
+        </IconButton>
         <Box className={style.links}>
           <Tooltip title="All tasks">
             <IconButton

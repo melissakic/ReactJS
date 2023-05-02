@@ -84,7 +84,7 @@ export default function Chart() {
       <NavigationBar />
       <div className={style.body}>
         <CustomCard backgroundColor="#2A2F4F">
-          <h2 className={style.title}>Track people efficiency</h2>
+          <p className={style.title}>Track people efficiency</p>
           <Bar options={options} data={data} className={style.chart} />;
         </CustomCard>
       </div>
