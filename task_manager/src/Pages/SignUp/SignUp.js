@@ -23,8 +23,7 @@ export default function SignUp() {
   } = useForm();
 
   const submit = () => {
-    console.log(email);
-    console.log(password);
+    
   };
 
   return (
