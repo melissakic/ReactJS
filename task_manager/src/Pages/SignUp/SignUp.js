@@ -8,6 +8,10 @@ import PassInput from "../../Components/PassInput/PassInput";
 import CustomCard from "../../UI/CustomCard/CustomCard";
 import UsernameInput from "../../Components/CustomInput/Username";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/auth";
+import Backdrop from "@mui/material/Backdrop";
+import { CircularProgress } from "@mui/material";
+import Alert from "@mui/material/Alert";
 
 export default function SignUp() {
   const navigation = useNavigate();
@@ -15,6 +19,10 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  //auth hooks
+  const [loader, setLoader] = useState(false);
+  const [error, setError] = useState(false);
+  const createUser = useAuth(email, password, setLoader, setError);
 
   const {
     register,
@@ -23,7 +31,9 @@ export default function SignUp() {
   } = useForm();
 
   const submit = () => {
-    
+    setError(false);
+    setLoader(true);
+    createUser();
   };
 
   return (
@@ -58,8 +68,22 @@ export default function SignUp() {
           >
             Go to login
           </Button>
+          {error && (
+            <Alert variant="filled" severity="error">
+              Account creation failed, try again later
+            </Alert>
+          )}
         </Stack>
       </CustomCard>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loader}
+        handleClose={() => {
+          setLoader(false);
+        }}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }
