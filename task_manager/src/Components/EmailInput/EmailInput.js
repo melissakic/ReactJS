@@ -8,7 +8,7 @@ export default function EmailInput(props) {
         required: true,
         pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
       })}
-      error={props.errors.email}
+      error={props.errors.email ? true : false}
       label={props.errors.email ? "Enter email in fromat x@x.x" : "Email"}
       variant="filled"
       className={style.input}

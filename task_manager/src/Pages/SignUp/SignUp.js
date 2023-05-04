@@ -8,7 +8,7 @@ import PassInput from "../../Components/PassInput/PassInput";
 import CustomCard from "../../UI/CustomCard/CustomCard";
 import UsernameInput from "../../Components/CustomInput/Username";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/auth";
+import useAuth from "../../hooks/register";
 import Backdrop from "@mui/material/Backdrop";
 import { CircularProgress } from "@mui/material";
 import Alert from "@mui/material/Alert";
@@ -22,7 +22,7 @@ export default function SignUp() {
   //auth hooks
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
-  const createUser = useAuth(email, password, setLoader, setError);
+  const createUser = useAuth(email, password, setLoader, setError, username);
 
   const {
     register,
@@ -78,9 +78,6 @@ export default function SignUp() {
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loader}
-        handleClose={() => {
-          setLoader(false);
-        }}
       >
         <CircularProgress color="inherit" />
       </Backdrop>

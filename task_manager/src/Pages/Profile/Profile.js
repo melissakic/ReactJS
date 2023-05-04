@@ -14,6 +14,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import ResetMod from "../Login/PassResetModal/ResetMod";
 
 export default function Profile() {
+
   const [email, setEmail] = useState("example@gmail.com");
   const [numberTasks, setNumberTasks] = useState("0");
   const [username, setUsername] = useState("example");

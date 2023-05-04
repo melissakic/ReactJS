@@ -1,8 +1,9 @@
 import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
+import { useToken } from "./token";
+import { useNavigate } from "react-router-dom";
 
 const useAuth = (email, password, setLoader, setError, username) => {
   const navigation = useNavigate();

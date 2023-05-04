@@ -7,7 +7,7 @@ export default function UsernameInput(props) {
       {...props.register("username", {
         required: true,
       })}
-      error={props.errors.username}
+      error={props.errors.username ? true : false}
       label={props.errors.username ? "Can't be empty" : "Username"}
       variant="filled"
       className={style.input}
