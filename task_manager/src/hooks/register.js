@@ -1,15 +1,26 @@
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from "../firebase";
+import { addDoc, collection } from "firebase/firestore";
 
-const useAuth = (email, password, setLoader, setError) => {
+const useAuth = (email, password, setLoader, setError, username) => {
   const navigation = useNavigate();
   return () => {
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setLoader(false);
-        navigation("/alltasks");
+      .then(async (userCredential) => {
         const user = userCredential.user;
+        try {
+          const docRef = await addDoc(collection(db, user.email), {
+            username: username,
+          });
+          setLoader(false);
+          navigation("/alltasks");
+        } catch (e) {
+          setError(true);
+          setLoader(false);
+        }
+
         // ...
       })
       .catch((error) => {
