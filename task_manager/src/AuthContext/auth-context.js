@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { auth } from "../firebase";
 
 export const AuthContext = React.createContext({
-  isLoggged: false,
-  setIsLogged: () => {},
+  user: null,
+  setUser: () => {},
 });
 
 export default function AuthContextProvider(props) {
-  const [logged, setLogged] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('auth')) || auth.currentUser);
   return (
-    <AuthContext.Provider value={{ isLoggged: logged, setIsLogged: setLogged }}>
+    <AuthContext.Provider value={{ user: user, setUser: setUser }}>
       {props.children}
     </AuthContext.Provider>
   );

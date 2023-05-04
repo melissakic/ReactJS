@@ -10,7 +10,8 @@ export default function useLogin(email, password, setError, setLoader) {
   return () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        ctx.setIsLogged(true);
+        localStorage.setItem("auth", JSON.stringify(auth.currentUser));
+        ctx.setUser(auth.currentUser);
         setLoader(false);
         navigation("/alltasks");
         // ...

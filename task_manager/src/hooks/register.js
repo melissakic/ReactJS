@@ -2,10 +2,12 @@ import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
-import { useToken } from "./token";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthContext/auth-context";
+import { useContext } from "react";
 
 const useAuth = (email, password, setLoader, setError, username) => {
+  const ctx = useContext(AuthContext);
   const navigation = useNavigate();
   return () => {
     createUserWithEmailAndPassword(auth, email, password)
@@ -15,6 +17,8 @@ const useAuth = (email, password, setLoader, setError, username) => {
           const docRef = await addDoc(collection(db, user.email), {
             username: username,
           });
+          localStorage.setItem("auth", JSON.stringify(auth.currentUser));
+          ctx.setUser(auth.currentUser);
           setLoader(false);
           navigation("/alltasks");
         } catch (e) {

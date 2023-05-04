@@ -16,13 +16,13 @@ function App() {
     { path: "/", element: <Present /> },
     { path: "/login", element: <Login /> },
     { path: "/signup", element: <SignUp /> },
-    { path: "/profile", element: ctx.isLoggged ? <Profile /> : <Login /> },
-    { path: "/chart", element: ctx.isLoggged ? <Chart /> : <Login /> },
+    { path: "/profile", element: ctx.user ? <Profile /> : <Login /> },
+    { path: "/chart", element: ctx.user ? <Chart /> : <Login /> },
     {
       path: "/alltasks",
-      element: ctx.isLoggged ? <AllTasks /> : <Login />,
+      element: ctx.user ? <AllTasks /> : <Login />,
     },
-    { path: "/mytasks", element: ctx.isLoggged ? <MyTasks /> : <Login /> },
+    { path: "/mytasks", element: ctx.user ? <MyTasks /> : <Login /> },
   ]);
 
   return <RouterProvider router={router} />;

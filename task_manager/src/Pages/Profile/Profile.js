@@ -12,14 +12,18 @@ import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
 import PersonIcon from "@mui/icons-material/Person";
 import ResetMod from "../Login/PassResetModal/ResetMod";
+import { useEffect } from "react";
 
 export default function Profile() {
-
   const [email, setEmail] = useState("example@gmail.com");
   const [numberTasks, setNumberTasks] = useState("0");
   const [username, setUsername] = useState("example");
   const [linkSent, setLinkSent] = useState(false);
   const [linkSentText, setLinkSentText] = useState("Success!");
+
+  useEffect(() => {
+    
+  }, []);
 
   //Modal
   const [open, setOpen] = useState(false);
