@@ -4,21 +4,16 @@ import { IconButton, Tooltip } from "@mui/material";
 import dayjs from "dayjs";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
-import CustomModal from "../../UI/Modal/CustomModal";
 import { useState } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import InputAdornment from "@mui/material/InputAdornment";
 import style from "./AllTasks.module.css";
-import { useForm } from "react-hook-form";
 import FilterModal from "../../Components/FilterModal/FilterModal";
+import AddModal from "../../Components/AddModal/AddModal";
 
 export default function AllTasks() {
   //sorting and filtering
-  const [date, setDate] = useState(dayjs("2022-04-17"));
+  const [date, setDate] = useState(dayjs());
   const [statusFilter, setStatusFilter] = useState("Active");
   const [sort, setSort] = useState("");
 
@@ -34,7 +29,7 @@ export default function AllTasks() {
     setOpenFilter(false);
   };
 
-  //modal
+  //modals
   const [openFilter, setOpenFilter] = useState(false);
   const handleCloseFilter = () => {
     setOpenFilter(false);
@@ -44,14 +39,13 @@ export default function AllTasks() {
     setOpenAdd(false);
   };
 
-  //form
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
   //add
+  const allUsers = ["1@2.com", "melis@aa.com"];
+  const [value, setValue] = useState(allUsers[0]);
+  const [inputValue, setInputValue] = useState("");
+  const [dateAdd, setDateAdd] = useState(dayjs().add("15", "day"));
+  const [statusAdd, setStatusAdd] = useState("Active");
+  const [priorityAdd, setPriorityAdd] = useState("Medium");
   const addTasks = () => {
     handleCloseAdd();
   };
@@ -100,48 +94,23 @@ export default function AllTasks() {
           handleChangeSort={handleChangeSort}
           applyFilter={applyFilter}
         />
-        <CustomModal open={openAdd} onClose={handleCloseAdd}>
-          <Stack alignItems="center" justifyContent="center" spacing={2}>
-            <TextField
-              label="Title"
-              {...register("title", {
-                required: true,
-              })}
-              error={errors.title}
-            />
-            <TextField
-              label="Description"
-              {...register("desc", {
-                required: true,
-              })}
-              error={errors.desc}
-            />
-            <TextField
-              type="number"
-              label="Estimated time"
-              {...register("estimated", {
-                required: true,
-              })}
-              error={errors.estimated}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="start">h</InputAdornment>
-                ),
-              }}
-            />
-
-            <Button
-              onClick={handleSubmit(addTasks)}
-              variant="contained"
-              sx={{
-                backgroundColor: "#2A2F4F",
-                marginTop: "10px",
-              }}
-            >
-              Save
-            </Button>
-          </Stack>
-        </CustomModal>
+        <AddModal
+          openAdd={openAdd}
+          handleCloseAdd={handleCloseAdd}
+          allUsers={allUsers}
+          value={value}
+          setValue={setValue}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          dateAdd={dateAdd}
+          setDateAdd={setDateAdd}
+          statusAdd={statusAdd}
+          setStatusAdd={setStatusAdd}
+          priorityAdd={priorityAdd}
+          setPriorityAdd={setPriorityAdd}
+          addTasks={addTasks}
+        />
+        {/* Add Modal */}
       </div>
     </>
   );
