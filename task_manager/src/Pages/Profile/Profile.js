@@ -12,23 +12,28 @@ import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
 import PersonIcon from "@mui/icons-material/Person";
 import ResetMod from "../Login/PassResetModal/ResetMod";
+import { Snackbar } from "@mui/material";
 import { useEffect } from "react";
+import { useLogOut } from "../../hooks/logOut";
+import {
+  useProfile,
+  useResetPass,
+  useChangeUsername,
+} from "../../hooks/profile";
 
 export default function Profile() {
+  const logOut = useLogOut();
+  //data
   const [email, setEmail] = useState("example@gmail.com");
   const [numberTasks, setNumberTasks] = useState("0");
   const [username, setUsername] = useState("example");
   const [linkSent, setLinkSent] = useState(false);
   const [linkSentText, setLinkSentText] = useState("Success!");
-
-  useEffect(() => {
-    
-  }, []);
+  const [usernameChanged, setUsernameChanged] = useState();
 
   //Modal
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
-  const [usernameChanged, setUsernameChanged] = useState();
   const handleClose = () => {
     setOpen(false);
     setError(false);
@@ -39,16 +44,26 @@ export default function Profile() {
       setError(true);
       return;
     }
-    //promijeni u bazi
-    setLinkSentText(
-      "Success! You changed your username to " +
-        usernameChanged +
-        ". Changes will be visible soon."
-    );
-    setLinkSent(true);
-    setUsernameChanged(null);
-    handleClose();
+    resetUsername();
   };
+
+  //fetching data
+  const profileData = useProfile(setEmail, setNumberTasks, setUsername);
+  const resetPassword = useResetPass(email, setLinkSent);
+  const resetUsername = useChangeUsername(
+    email,
+    usernameChanged,
+    setLinkSentText,
+    setLinkSent,
+    setUsernameChanged,
+    setUsername,
+    usernameChanged,
+    handleClose
+  );
+
+  useEffect(() => {
+    profileData();
+  }, []);
 
   return (
     <>
@@ -61,11 +76,14 @@ export default function Profile() {
                 className={style.profile}
                 sx={{ flexGrow: 1 }}
               />
-              {linkSent && (
-                <Alert sx={{ marginX: "20px", marginY: "20px" }}>
-                  {linkSentText}
-                </Alert>
-              )}
+
+              <Button
+                className={style.reset}
+                variant="contained"
+                onClick={logOut}
+              >
+                Log out
+              </Button>
             </Grid>
             <Grid item md={6} xs={12} className={style.info}>
               <p className={style.title}>My profile</p>
@@ -109,10 +127,8 @@ export default function Profile() {
                   className={style.reset}
                   variant="contained"
                   onClick={() => {
-                    setLinkSent(true);
-                    setLinkSentText(
-                      "Success! Password link sent. Check email for steps to reset your password"
-                    );
+                    setLinkSentText("Success! Check email to reset password");
+                    resetPassword();
                   }}
                 >
                   Send password reset link
@@ -128,6 +144,19 @@ export default function Profile() {
             </Grid>
           </Grid>
         </CustomCard>
+
+        <Snackbar
+          open={linkSent}
+          autoHideDuration={2000}
+          onClose={() => {
+            setLinkSent(false);
+          }}
+          sx={{ maxWidth: "50%" }}
+        >
+          <Alert sx={{ marginX: "20px", marginY: "20px" }}>
+            {linkSentText}
+          </Alert>
+        </Snackbar>
 
         <ResetMod
           label="Username"
