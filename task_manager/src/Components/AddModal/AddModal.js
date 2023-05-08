@@ -1,4 +1,8 @@
 import CustomModal from "../../UI/Modal/CustomModal";
+import { useState, useEffect } from "react";
+import { useFetchUsers } from "../../hooks/fetch";
+import dayjs from "dayjs";
+
 import {
   Stack,
   TextField,
@@ -13,22 +17,57 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useForm } from "react-hook-form";
+import { usePostTask } from "../../hooks/post";
 
 export default function AddModal(props) {
-  const {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [estimatedTime, setEstimatedTime] = useState("");
+  const [allUsers, setUsers] = useState([]);
+  const [value, setValue] = useState("");
+  const fetch = useFetchUsers(setUsers, setValue);
+  const [inputValue, setInputValue] = useState("a");
+  const [dateAdd, setDateAdd] = useState(dayjs().add("15", "day"));
+  const [statusAdd, setStatusAdd] = useState("Active");
+  const [priorityAdd, setPriorityAdd] = useState("Medium");
+  const post = usePostTask(
+    title,
+    value,
+    description,
+    estimatedTime,
+    dateAdd,
+    dayjs(),
+    statusAdd,
+    priorityAdd
+  );
+
+  useEffect(() => {
+    fetch();
+  }, []);
+
+  let {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const addTasks = () => {
+    props.handleCloseAdd();
+    post();
+  };
+
   return (
     <CustomModal open={props.openAdd} onClose={props.handleCloseAdd}>
       <Stack alignItems="center" justifyContent="center" spacing={2}>
         <TextField
-          label="Title"
           {...register("title", {
             required: true,
           })}
+          label="Title"
           error={errors.title ? true : false}
+          onChange={(event) => {
+            setTitle(event.target.value)
+          }}
         />
         <TextField
           label="Description"
@@ -36,6 +75,9 @@ export default function AddModal(props) {
             required: true,
           })}
           error={errors.desc ? true : false}
+          onChange={(event) => {
+            setDescription(event.target.value)
+          }}
         />
         <TextField
           type="number"
@@ -47,16 +89,20 @@ export default function AddModal(props) {
           InputProps={{
             endAdornment: <InputAdornment position="start">h</InputAdornment>,
           }}
+          onChange={(event) => {
+            setEstimatedTime(event.target.value)
+          }}
         />
         <Autocomplete
-          options={props.allUsers}
-          value={props.value}
+          options={allUsers}
+          value={value}
           onChange={(event, newValue) => {
-            props.setValue(newValue);
+            console.log(newValue);
+            setValue(newValue);
           }}
-          inputValue={props.inputValue}
+          inputValue={inputValue}
           onInputChange={(event, newInputValue) => {
-            props.setInputValue(newInputValue);
+            setInputValue(newInputValue);
           }}
           sx={{ width: 300 }}
           renderInput={(params) => (
@@ -68,17 +114,17 @@ export default function AddModal(props) {
           <DemoContainer components={["DatePicker"]}>
             <DatePicker
               label="Deadline"
-              value={props.dateAdd}
-              onChange={(newValue) => props.setDateAdd(newValue)}
+              value={dateAdd}
+              onChange={(newValue) => setDateAdd(newValue)}
             />
           </DemoContainer>
         </LocalizationProvider>
         <ToggleButtonGroup
           color="primary"
-          value={props.statusAdd}
+          value={statusAdd}
           exclusive
           onChange={(event, newStatus) => {
-            props.setStatusAdd(newStatus);
+            setStatusAdd(newStatus);
           }}
           aria-label="Platform"
         >
@@ -87,10 +133,10 @@ export default function AddModal(props) {
         </ToggleButtonGroup>
         <ToggleButtonGroup
           color="primary"
-          value={props.priorityAdd}
+          value={priorityAdd}
           exclusive
           onChange={(event, newPriority) => {
-            props.setPriorityAdd(newPriority);
+            setPriorityAdd(newPriority);
           }}
           aria-label="Platform"
         >
@@ -100,7 +146,7 @@ export default function AddModal(props) {
         </ToggleButtonGroup>
 
         <Button
-          onClick={handleSubmit(props.addTasks)}
+          onClick={handleSubmit(addTasks)}
           variant="contained"
           sx={{
             backgroundColor: "#2A2F4F",

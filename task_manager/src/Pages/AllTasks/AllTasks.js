@@ -10,6 +10,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import style from "./AllTasks.module.css";
 import FilterModal from "../../Components/FilterModal/FilterModal";
 import AddModal from "../../Components/AddModal/AddModal";
+import { useFetchUsers } from "../../hooks/fetch";
 
 export default function AllTasks() {
   //sorting and filtering
@@ -40,15 +41,15 @@ export default function AllTasks() {
   };
 
   //add
-  const allUsers = ["1@2.com", "melis@aa.com"];
-  const [value, setValue] = useState(allUsers[0]);
-  const [inputValue, setInputValue] = useState("");
-  const [dateAdd, setDateAdd] = useState(dayjs().add("15", "day"));
-  const [statusAdd, setStatusAdd] = useState("Active");
-  const [priorityAdd, setPriorityAdd] = useState("Medium");
-  const addTasks = () => {
-    handleCloseAdd();
-  };
+  // const [allUsers, setUsers] = useState([]);
+  // const [value, setValue] = useState();
+  // useFetchUsers(setUsers, setValue);
+  // const [inputValue, setInputValue] = useState("a");
+  // const [dateAdd, setDateAdd] = useState(dayjs().add("15", "day"));
+  // const [statusAdd, setStatusAdd] = useState("Active");
+  // const [priorityAdd, setPriorityAdd] = useState("Medium");
+
+
 
   return (
     <>
@@ -97,20 +98,7 @@ export default function AllTasks() {
         <AddModal
           openAdd={openAdd}
           handleCloseAdd={handleCloseAdd}
-          allUsers={allUsers}
-          value={value}
-          setValue={setValue}
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-          dateAdd={dateAdd}
-          setDateAdd={setDateAdd}
-          statusAdd={statusAdd}
-          setStatusAdd={setStatusAdd}
-          priorityAdd={priorityAdd}
-          setPriorityAdd={setPriorityAdd}
-          addTasks={addTasks}
         />
-        {/* Add Modal */}
       </div>
     </>
   );

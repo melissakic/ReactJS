@@ -17,6 +17,7 @@ const useAuth = (email, password, setLoader, setError, username) => {
           const docRef = await addDoc(collection(db, user.email), {
             username: username,
           });
+          await addDoc(collection(db, "users"), { email: user.email });
           localStorage.setItem("auth", JSON.stringify(auth.currentUser));
           ctx.setUser(auth.currentUser);
           setLoader(false);
