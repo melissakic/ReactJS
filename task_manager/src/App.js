@@ -12,6 +12,7 @@ import { AuthContext } from "./AuthContext/auth-context";
 
 function App() {
   const ctx = useContext(AuthContext);
+  
   let router = createBrowserRouter([
     { path: "/", element: <Present /> },
     { path: "/login", element: <Login /> },

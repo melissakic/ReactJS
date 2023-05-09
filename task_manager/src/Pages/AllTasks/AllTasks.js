@@ -4,13 +4,12 @@ import { IconButton, Tooltip } from "@mui/material";
 import dayjs from "dayjs";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import style from "./AllTasks.module.css";
 import FilterModal from "../../Components/FilterModal/FilterModal";
 import AddModal from "../../Components/AddModal/AddModal";
-import { useFetchUsers } from "../../hooks/fetch";
 
 export default function AllTasks() {
   //sorting and filtering
@@ -39,17 +38,6 @@ export default function AllTasks() {
   const handleCloseAdd = () => {
     setOpenAdd(false);
   };
-
-  //add
-  // const [allUsers, setUsers] = useState([]);
-  // const [value, setValue] = useState();
-  // useFetchUsers(setUsers, setValue);
-  // const [inputValue, setInputValue] = useState("a");
-  // const [dateAdd, setDateAdd] = useState(dayjs().add("15", "day"));
-  // const [statusAdd, setStatusAdd] = useState("Active");
-  // const [priorityAdd, setPriorityAdd] = useState("Medium");
-
-
 
   return (
     <>
@@ -95,10 +83,7 @@ export default function AllTasks() {
           handleChangeSort={handleChangeSort}
           applyFilter={applyFilter}
         />
-        <AddModal
-          openAdd={openAdd}
-          handleCloseAdd={handleCloseAdd}
-        />
+        <AddModal openAdd={openAdd} handleCloseAdd={handleCloseAdd} />
       </div>
     </>
   );

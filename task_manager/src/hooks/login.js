@@ -1,17 +1,17 @@
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { AuthContext } from "../AuthContext/auth-context";
-import { useContext } from "react";
+import { useSecurity } from "./auth";
 
 export default function useLogin(email, password, setError, setLoader) {
-  const ctx = useContext(AuthContext);
   const navigation = useNavigate();
+  const check = useSecurity();
   return () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        localStorage.setItem("auth", JSON.stringify(auth.currentUser));
-        ctx.setUser(auth.currentUser);
+        const user = userCredential.user;
+        localStorage.setItem("auth", JSON.stringify(user));
+        check();
         setLoader(false);
         navigation("/alltasks");
         // ...

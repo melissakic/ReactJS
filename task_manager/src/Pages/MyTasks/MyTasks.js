@@ -10,7 +10,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Tooltip from "@mui/material/Tooltip";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import LogTimeModal from "../../Components/LogTimeModal/LogTimeModal";
 import EditModal from "../../Components/EditModal/EditModal";
 
