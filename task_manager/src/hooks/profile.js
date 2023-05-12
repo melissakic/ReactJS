@@ -1,14 +1,16 @@
 import { auth, db } from "../firebase";
-import { collection, getDocs, updateDoc } from "firebase/firestore";
+import { collection, updateDoc, query, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
 
 export function useProfile(setEmail, setTasks, setUsername) {
+  console.log("profile");
   const navigation = useNavigate();
   return async () => {
     try {
-      const user = JSON.parse(localStorage.getItem("auth"));
+      const user = JSON.parse(localStorage.getItem("auth")) || auth.currentUser;
       setEmail(user.email);
+      const q = query(collection(db, user.email));
       const querySnapshot = await getDocs(collection(db, user.email));
       querySnapshot.forEach((doc) => {
         setUsername(doc.get("username"));
