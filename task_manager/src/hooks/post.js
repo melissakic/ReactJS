@@ -8,10 +8,14 @@ export function usePostTask(
   deadline,
   createdDate,
   status,
-  priority
+  priority,
+  setTitle,
+  setDescription,
+  setEstimatedTime
 ) {
   return () => {
     const object = {
+      loggedTime: 0,
       title: title,
       email: email,
       description: description,
@@ -22,18 +26,15 @@ export function usePostTask(
       priority: priority,
     };
 
-    axios.post(
-      "https://taskplanner-7fb06-default-rtdb.europe-west1.firebasedatabase.app/tasks.json",
-      object
-    );
-    // axios
-    //   .get(
-    //     `https://taskplanner-7fb06-default-rtdb.europe-west1.firebasedatabase.app/tasks.json`
-    //   )
-    //   .then((res) => {
-    //     const data = res.data;
-    //     const arr = Object.values(data);
-    //     console.log(arr[0].email);
-    //   });
+    axios
+      .post(
+        "https://taskplanner-7fb06-default-rtdb.europe-west1.firebasedatabase.app/tasks.json",
+        object
+      )
+      .then(() => {
+        setTitle("");
+        setDescription("");
+        setEstimatedTime("");
+      });
   };
 }

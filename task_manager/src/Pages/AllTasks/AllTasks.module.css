@@ -21,4 +21,23 @@
     background-color: white;
     margin-right: 10px !important;
     margin-left: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.desc{
+    background-color: #2A2F4F;
+    width: 90%;
+    color: white;
+    text-align: center;
+    padding-top:5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+}
+
+.details{
+    background-color: #2A2F4F;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin-inline: 10px;
 }

@@ -38,7 +38,10 @@ export default function AddModal(props) {
     dateAdd,
     dayjs(),
     statusAdd,
-    priorityAdd
+    priorityAdd,
+    setTitle,
+    setDescription,
+    setEstimatedTime
   );
 
   useEffect(() => {
@@ -66,7 +69,7 @@ export default function AddModal(props) {
           label="Title"
           error={errors.title ? true : false}
           onChange={(event) => {
-            setTitle(event.target.value)
+            setTitle(event.target.value);
           }}
         />
         <TextField
@@ -76,7 +79,7 @@ export default function AddModal(props) {
           })}
           error={errors.desc ? true : false}
           onChange={(event) => {
-            setDescription(event.target.value)
+            setDescription(event.target.value);
           }}
         />
         <TextField
@@ -90,7 +93,7 @@ export default function AddModal(props) {
             endAdornment: <InputAdornment position="start">h</InputAdornment>,
           }}
           onChange={(event) => {
-            setEstimatedTime(event.target.value)
+            setEstimatedTime(event.target.value);
           }}
         />
         <Autocomplete
