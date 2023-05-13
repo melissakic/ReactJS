@@ -38,10 +38,7 @@ export default function AddModal(props) {
     dateAdd,
     dayjs(),
     statusAdd,
-    priorityAdd,
-    setTitle,
-    setDescription,
-    setEstimatedTime
+    priorityAdd
   );
 
   useEffect(() => {
@@ -55,8 +52,8 @@ export default function AddModal(props) {
   } = useForm();
 
   const addTasks = () => {
-    props.handleCloseAdd();
     post();
+    props.handleCloseAdd();
   };
 
   return (

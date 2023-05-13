@@ -1,7 +1,6 @@
 import CustomCard from "../../UI/CustomCard/CustomCard";
 import NavigationBar from "../../UI/NavigationBar/NavigationBar";
 import { IconButton, Tooltip } from "@mui/material";
-import dayjs from "dayjs";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import { useState, useEffect } from "react";
@@ -22,23 +21,6 @@ export default function AllTasks() {
   const [tasks, setTasks] = useState([]);
   //fetch tasks
   const fetch = useFetchTasks(setTasks);
-
-  //sorting and filtering
-  const [date, setDate] = useState(dayjs());
-  const [statusFilter, setStatusFilter] = useState("Active");
-  const [sort, setSort] = useState("");
-
-  const handleChangeSort = (event) => {
-    setSort(event.target.value);
-  };
-
-  const handleChange = (event, newStatus) => {
-    setStatusFilter(newStatus);
-  };
-
-  const applyFilter = () => {
-    setOpenFilter(false);
-  };
 
   //modals
   const [openFilter, setOpenFilter] = useState(false);
@@ -162,13 +144,8 @@ export default function AllTasks() {
         <FilterModal
           openFilter={openFilter}
           handleCloseFilter={handleCloseFilter}
-          statusFilter={statusFilter}
-          handleChange={handleChange}
-          date={date}
-          setDate={setDate}
-          sort={sort}
-          handleChangeSort={handleChangeSort}
-          applyFilter={applyFilter}
+          setTasks={setTasks}
+          tasks={tasks}
         />
         <AddModal openAdd={openAdd} handleCloseAdd={handleCloseAdd} />
       </div>

@@ -8,10 +8,7 @@ export function usePostTask(
   deadline,
   createdDate,
   status,
-  priority,
-  setTitle,
-  setDescription,
-  setEstimatedTime
+  priority
 ) {
   return () => {
     const object = {
@@ -26,15 +23,9 @@ export function usePostTask(
       priority: priority,
     };
 
-    axios
-      .post(
-        "https://taskplanner-7fb06-default-rtdb.europe-west1.firebasedatabase.app/tasks.json",
-        object
-      )
-      .then(() => {
-        setTitle("");
-        setDescription("");
-        setEstimatedTime("");
-      });
+    axios.post(
+      "https://taskplanner-7fb06-default-rtdb.europe-west1.firebasedatabase.app/tasks.json",
+      object
+    );
   };
 }

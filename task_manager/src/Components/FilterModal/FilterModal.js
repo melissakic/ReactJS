@@ -9,18 +9,43 @@ import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
+import dayjs from "dayjs";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import CustomModal from "../../UI/Modal/CustomModal";
+import { useState, useEffect } from "react";
 
 export default function FiterModal(props) {
+  const [date, setDate] = useState(dayjs());
+  const [statusFilter, setStatusFilter] = useState("Active");
+  const [sort, setSort] = useState("");
+
+  const handleChangeSort = (event) => {
+    setSort(event.target.value);
+  };
+
+  const handleChange = (event, newStatus) => {
+    setStatusFilter(newStatus);
+  };
+
+  const applyFilter = () => {
+    props.setTasks((prev) =>
+      prev.filter(
+        (data) =>
+          dayjs(data.deadline).format("DD/MM/YYYY") ==
+            date.format("DD/MM/YYYY") && data.status == statusFilter
+      )
+    );
+    props.handleCloseFilter();
+  };
+
   return (
     <CustomModal open={props.openFilter} onClose={props.handleCloseFilter}>
       <Stack alignItems="center" justifyContent="center" spacing={2}>
         <ToggleButtonGroup
           color="primary"
-          value={props.statusFilter}
+          value={statusFilter}
           exclusive
-          onChange={props.handleChange}
+          onChange={handleChange}
           aria-label="Platform"
         >
           <ToggleButton value="Active">Active</ToggleButton>
@@ -30,8 +55,8 @@ export default function FiterModal(props) {
           <DemoContainer components={["DatePicker"]}>
             <DatePicker
               label="Filter by date"
-              value={props.date}
-              onChange={(newValue) => props.setDate(newValue)}
+              value={date}
+              onChange={(newValue) => setDate(newValue)}
             />
           </DemoContainer>
         </LocalizationProvider>
@@ -41,9 +66,9 @@ export default function FiterModal(props) {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={props.sort}
+              value={sort}
               label="Sort by"
-              onChange={props.handleChangeSort}
+              onChange={handleChangeSort}
             >
               <MenuItem value={"logged"}>Logged hours</MenuItem>
               <MenuItem value={"estimated"}>Estimated time</MenuItem>
@@ -53,7 +78,7 @@ export default function FiterModal(props) {
         </Box>
       </Stack>
       <Button
-        onClick={props.applyFilter}
+        onClick={applyFilter}
         variant="contained"
         sx={{
           backgroundColor: "#2A2F4F",
