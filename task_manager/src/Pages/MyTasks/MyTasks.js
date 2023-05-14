@@ -28,26 +28,6 @@ export default function MyTasks() {
     handleClose();
   };
 
-  //edit
-  const [date, setDate] = useState();
-
-  //toogle
-  const [alignment, setAlignment] = useState("Medium");
-
-  const handleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
-  };
-
-  const [status, setStatus] = useState("Active");
-
-  const handleChangeStatus = (event, newStatus) => {
-    setStatus(newStatus);
-  };
-
-  const edit = () => {
-    handleCloseEdit();
-  };
-
   return (
     <>
       <NavigationBar />
@@ -151,15 +131,7 @@ export default function MyTasks() {
           handleClose={handleClose}
           logTime={logTime}
         />
-        <EditModal
-          openEdit={openEdit}
-          handleCloseEdit={handleCloseEdit}
-          edit={edit}
-          handleChangeStatus={handleChangeStatus}
-          handleChange={handleChange}
-          alignment={alignment}
-          status={status}
-        />
+        <EditModal openEdit={openEdit} handleCloseEdit={handleCloseEdit} />
       </div>
     </>
   );

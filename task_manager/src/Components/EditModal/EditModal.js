@@ -9,21 +9,90 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Button from "@mui/material/Button";
 import InputAdornment from "@mui/material/InputAdornment";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import dayjs from "dayjs";
+import { useEdit } from "../../hooks/edit";
 
 export default function EditModal(props) {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [estimatedTime, setEstimatedTime] = useState("");
+  const [dateAdd, setDateAdd] = useState(dayjs());
+  const [priority, setPriority] = useState("Medium");
+  const [status, setStatus] = useState("Active");
+  const editTask = useEdit(
+    props.editPath,
+    title,
+    description,
+    estimatedTime,
+    dateAdd,
+    priority,
+    status,
+    props.setTasks
+  );
+
+  let {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const edit = () => {
+    setTitle("");
+    setDescription("");
+    setEstimatedTime("");
+    editTask();
+    props.handleCloseEdit();
+  };
+
   return (
     <CustomModal open={props.openEdit} onClose={props.handleCloseEdit}>
       <Stack alignItems="center" justifyContent="center">
         <Stack direction="row">
-          <TextField label="Title" sx={{ marginX: "5px" }} />
-          <TextField label="Description" sx={{ marginX: "5px" }} />
+          <TextField
+            {...register("title", {
+              required: true,
+            })}
+            error={errors.title ? true : false}
+            value={title}
+            onChange={(event) => {
+              setTitle(event.target.value);
+            }}
+            label="Title"
+            sx={{ marginX: "5px" }}
+          />
+          <TextField
+            {...register("desc", {
+              required: true,
+            })}
+            error={errors.desc ? true : false}
+            value={description}
+            onChange={(event) => {
+              setDescription(event.target.value);
+            }}
+            label="Description"
+            sx={{ marginX: "5px" }}
+          />
         </Stack>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>
-            <DatePicker label="Task deadline" />
+            <DatePicker
+              label="Task deadline"
+              value={dateAdd}
+              onChange={(newValue) => setDateAdd(newValue)}
+            />
           </DemoContainer>
         </LocalizationProvider>
         <TextField
+          {...register("estimated", {
+            required: true,
+          })}
+          error={errors.estimated ? true : false}
+          value={estimatedTime}
+          onChange={(event) => {
+            setEstimatedTime(event.target.value);
+          }}
           label="Estimated time"
           type="number"
           InputProps={{
@@ -33,51 +102,38 @@ export default function EditModal(props) {
         />
         <Stack direction="row">
           <ToggleButtonGroup
-            color="primary"
-            value={props.alignment}
+            value={priority}
             exclusive
-            onChange={props.handleChange}
-            aria-label="Platform"
-            sx={{
-              marginRight: "5px",
-              backgroundColor: "#2A2F4F",
+            onChange={(event, newVal) => {
+              setPriority(newVal);
             }}
+            aria-label="Platform"
           >
-            <ToggleButton value="High" sx={{ color: "white" }}>
-              High
-            </ToggleButton>
-            <ToggleButton value="Medium" sx={{ color: "white" }}>
-              Medium
-            </ToggleButton>
-            <ToggleButton value="Low" sx={{ color: "white" }}>
-              Low
-            </ToggleButton>
+            <ToggleButton value="High">High</ToggleButton>
+            <ToggleButton value="Medium">Medium</ToggleButton>
+            <ToggleButton value="Low">Low</ToggleButton>
           </ToggleButtonGroup>
           <ToggleButtonGroup
-            color="primary"
-            value={props.status}
+            value={status}
             exclusive
-            onChange={props.handleChangeStatus}
+            onChange={(event, newVal) => {
+              setStatus(newVal);
+            }}
             aria-label="Platform"
-            sx={{ marginLeft: "5px", backgroundColor: "#2A2F4F" }}
           >
-            <ToggleButton value="Active" sx={{ color: "white" }}>
-              Active
-            </ToggleButton>
-            <ToggleButton value="Completed" sx={{ color: "white" }}>
-              Completed
-            </ToggleButton>
+            <ToggleButton value="Active">Active</ToggleButton>
+            <ToggleButton value="Completed">Completed</ToggleButton>
           </ToggleButtonGroup>
         </Stack>
         <Button
-          onClick={props.edit}
+          onClick={handleSubmit(edit)}
           variant="contained"
           sx={{
             backgroundColor: "#2A2F4F",
             marginTop: "10px",
           }}
         >
-          Save
+          Edit
         </Button>
       </Stack>
     </CustomModal>

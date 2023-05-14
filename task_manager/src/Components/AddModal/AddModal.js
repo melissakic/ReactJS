@@ -18,6 +18,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useForm } from "react-hook-form";
 import { usePostTask } from "../../hooks/post";
+import { useFetchTasks } from "../../hooks/fetch";
 
 export default function AddModal(props) {
   const [title, setTitle] = useState("");
@@ -30,6 +31,7 @@ export default function AddModal(props) {
   const [dateAdd, setDateAdd] = useState(dayjs().add("15", "day"));
   const [statusAdd, setStatusAdd] = useState("Active");
   const [priorityAdd, setPriorityAdd] = useState("Medium");
+  const fetchTasks = useFetchTasks(props.setTasks);
   const post = usePostTask(
     title,
     value,
@@ -53,6 +55,10 @@ export default function AddModal(props) {
 
   const addTasks = () => {
     post();
+    setTitle("");
+    setDescription("");
+    setEstimatedTime("");
+    fetchTasks();
     props.handleCloseAdd();
   };
 
@@ -65,6 +71,7 @@ export default function AddModal(props) {
           })}
           label="Title"
           error={errors.title ? true : false}
+          value={title}
           onChange={(event) => {
             setTitle(event.target.value);
           }}
@@ -75,6 +82,7 @@ export default function AddModal(props) {
             required: true,
           })}
           error={errors.desc ? true : false}
+          value={description}
           onChange={(event) => {
             setDescription(event.target.value);
           }}
@@ -89,6 +97,7 @@ export default function AddModal(props) {
           InputProps={{
             endAdornment: <InputAdornment position="start">h</InputAdornment>,
           }}
+          value={estimatedTime}
           onChange={(event) => {
             setEstimatedTime(event.target.value);
           }}

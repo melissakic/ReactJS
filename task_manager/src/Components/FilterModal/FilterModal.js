@@ -12,7 +12,7 @@ import Stack from "@mui/material/Stack";
 import dayjs from "dayjs";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import CustomModal from "../../UI/Modal/CustomModal";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function FiterModal(props) {
   const [date, setDate] = useState(dayjs());
@@ -31,10 +31,25 @@ export default function FiterModal(props) {
     props.setTasks((prev) =>
       prev.filter(
         (data) =>
-          dayjs(data.deadline).format("DD/MM/YYYY") ==
-            date.format("DD/MM/YYYY") && data.status == statusFilter
+          dayjs(data.deadline).format("DD/MM/YYYY") ===
+            date.format("DD/MM/YYYY") && data.status === statusFilter
       )
     );
+    props.handleCloseFilter();
+  };
+
+  const applySort = () => {
+    let tasks = props.tasks;
+    tasks.sort((t1, t2) => {
+      if (+t1[sort] < +t2[sort]) {
+        return -1;
+      }
+      if (+t1[sort] > +t2[sort]) {
+        return 1;
+      }
+      return 0;
+    });
+    props.setTasks(tasks);
     props.handleCloseFilter();
   };
 
@@ -70,9 +85,8 @@ export default function FiterModal(props) {
               label="Sort by"
               onChange={handleChangeSort}
             >
-              <MenuItem value={"logged"}>Logged hours</MenuItem>
-              <MenuItem value={"estimated"}>Estimated time</MenuItem>
-              <MenuItem value={"priority"}>Priority</MenuItem>
+              <MenuItem value={"loggedTime"}>Logged hours</MenuItem>
+              <MenuItem value={"estimatedTime"}>Estimated time</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -85,7 +99,17 @@ export default function FiterModal(props) {
           marginTop: "10px",
         }}
       >
-        Save
+        Filter
+      </Button>
+      <Button
+        onClick={applySort}
+        variant="contained"
+        sx={{
+          backgroundColor: "#2A2F4F",
+          marginTop: "10px",
+        }}
+      >
+        Sort
       </Button>
     </CustomModal>
   );

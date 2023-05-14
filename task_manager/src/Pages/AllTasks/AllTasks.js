@@ -16,6 +16,7 @@ import { useFetchTasks } from "../../hooks/fetch";
 import Card from "@mui/material/Card";
 import { Stack } from "@mui/material";
 import axios from "axios";
+import EditModal from "../../Components/EditModal/EditModal";
 
 export default function AllTasks() {
   const [tasks, setTasks] = useState([]);
@@ -30,6 +31,11 @@ export default function AllTasks() {
   const [openAdd, setOpenAdd] = useState(false);
   const handleCloseAdd = () => {
     setOpenAdd(false);
+  };
+  const [openEdit, setOpenEdit] = useState(false);
+  const [editPath, setEditPath] = useState();
+  const handleCloseEdit = () => {
+    setOpenEdit(false);
   };
 
   useEffect(() => {
@@ -48,6 +54,7 @@ export default function AllTasks() {
                 <IconButton
                   onClick={() => {
                     setOpenFilter(true);
+                    fetch();
                   }}
                 >
                   <SettingsIcon className={style.icon} />
@@ -109,7 +116,12 @@ export default function AllTasks() {
                   <Grid container>
                     <Grid item md={6} xs={12} sx={{ textAlign: "center" }}>
                       <Tooltip title="Edit">
-                        <IconButton>
+                        <IconButton
+                          onClick={() => {
+                            setOpenEdit(true);
+                            setEditPath(task.key);
+                          }}
+                        >
                           <EditIcon className={style.icon} />
                         </IconButton>
                       </Tooltip>
@@ -147,7 +159,17 @@ export default function AllTasks() {
           setTasks={setTasks}
           tasks={tasks}
         />
-        <AddModal openAdd={openAdd} handleCloseAdd={handleCloseAdd} />
+        <AddModal
+          openAdd={openAdd}
+          handleCloseAdd={handleCloseAdd}
+          setTasks={setTasks}
+        />
+        <EditModal
+          openEdit={openEdit}
+          handleCloseEdit={handleCloseEdit}
+          editPath={editPath}
+          setTasks={setTasks}
+        />
       </div>
     </>
   );
