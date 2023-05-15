@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
 
 export function useProfile(setEmail, setTasks, setUsername) {
-  console.log("profile");
   const navigation = useNavigate();
   return async () => {
     try {

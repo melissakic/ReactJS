@@ -95,6 +95,7 @@ export default function EditModal(props) {
           }}
           label="Estimated time"
           type="number"
+          inputProps={{ min: 0 }}
           InputProps={{
             endAdornment: <InputAdornment position="start">h</InputAdornment>,
           }}

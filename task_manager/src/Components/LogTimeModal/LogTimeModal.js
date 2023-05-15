@@ -3,8 +3,18 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import Stack from "@mui/material/Stack";
+import { useState } from "react";
+import { useEditTime } from "../../hooks/editTime";
 
 export default function LogTimeModal(props) {
+  const [loggedTime, setLoggedTime] = useState("");
+  const editTime = useEditTime(props.editPath, loggedTime, props.setTasks);
+  const logTime = () => {
+    editTime();
+    setLoggedTime("");
+    props.handleClose();
+  };
+
   return (
     <CustomModal open={props.openLog} onClose={props.handleClose}>
       <Stack alignItems="center" justifyContent="center">
@@ -14,12 +24,15 @@ export default function LogTimeModal(props) {
             marginTop: "10px",
           }}
           type="number"
+          value={loggedTime}
+          onChange={(event) => setLoggedTime(event.target.value)}
+          inputProps={{ min: 0 }}
           InputProps={{
             endAdornment: <InputAdornment position="start">h</InputAdornment>,
           }}
         />
         <Button
-          onClick={props.logTime}
+          onClick={logTime}
           variant="contained"
           sx={{
             backgroundColor: "#2A2F4F",

@@ -94,6 +94,7 @@ export default function AddModal(props) {
             required: true,
           })}
           error={errors.estimated ? true : false}
+          inputProps={{ min: 0 }}
           InputProps={{
             endAdornment: <InputAdornment position="start">h</InputAdornment>,
           }}

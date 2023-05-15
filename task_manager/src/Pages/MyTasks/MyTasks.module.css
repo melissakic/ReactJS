@@ -14,4 +14,14 @@
 
 .text{
     color: #2A2F4F;
+    text-align: center;
+}
+
+.main{
+    background-color: #2A2F4F;
+    padding: 2%;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    
 }
