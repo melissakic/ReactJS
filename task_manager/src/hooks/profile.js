@@ -2,10 +2,12 @@ import { auth, db } from "../firebase";
 import { collection, updateDoc, query, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
+import axios from "axios";
 
 export function useProfile(setEmail, setTasks, setUsername) {
   const navigation = useNavigate();
   return async () => {
+    let numOfTasks = 0;
     try {
       const user = JSON.parse(localStorage.getItem("auth")) || auth.currentUser;
       setEmail(user.email);
@@ -14,6 +16,19 @@ export function useProfile(setEmail, setTasks, setUsername) {
       querySnapshot.forEach((doc) => {
         setUsername(doc.get("username"));
       });
+      axios
+        .get(
+          "https://taskplanner-7fb06-default-rtdb.europe-west1.firebasedatabase.app/tasks.json"
+        )
+        .then((res) => {
+          const loggedMail = JSON.parse(localStorage.getItem("auth")).email;
+          const data = res.data;
+          const val = Object.values(data);
+          val.forEach((data) => {
+            if (loggedMail === data.email) numOfTasks++;
+          });
+          setTasks(numOfTasks);
+        });
     } catch (err) {
       navigation("/");
     }

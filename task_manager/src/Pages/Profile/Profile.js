@@ -70,79 +70,68 @@ export default function Profile() {
       <NavigationBar />
       <div className={style.body}>
         <CustomCard backgroundColor="#2A2F4F">
-          <Grid container justify="center" align="center">
-            <Grid item md={6} xs={12}>
-              <AccountCircleIcon
-                className={style.profile}
-                sx={{ flexGrow: 1 }}
-              />
-
-              <Button
-                className={style.reset}
-                variant="contained"
-                onClick={logOut}
-              >
-                Log out
-              </Button>
-            </Grid>
-            <Grid item md={6} xs={12} className={style.info}>
-              <p className={style.title}>My profile</p>
-              <Stack className={style.userData}>
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="center"
-                  className={style.data}
-                >
-                  <p>{email}</p>
-                  <Tooltip title="Your email">
-                    <EmailIcon sx={{ fontSize: "35px" }} />
-                  </Tooltip>
-                </Stack>
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="center"
-                  className={style.data}
-                >
-                  <p>{numberTasks}</p>
-                  <Tooltip title="Number of tasks assigned to you">
-                    <AssignmentIndIcon sx={{ fontSize: "35px" }} />
-                  </Tooltip>
-                </Stack>
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="center"
-                  className={style.data}
-                >
-                  <p>{username}</p>
-                  <Tooltip title="Your username">
-                    {<PersonIcon sx={{ fontSize: "35px" }} />}
-                  </Tooltip>
-                </Stack>
-              </Stack>
-              <Stack>
-                <Button
-                  className={style.reset}
-                  variant="contained"
-                  onClick={() => {
-                    setLinkSentText("Success! Check email to reset password");
-                    resetPassword();
-                  }}
-                >
-                  Send password reset link
-                </Button>
-                <Button
-                  className={style.reset}
-                  variant="contained"
-                  onClick={() => setOpen(true)}
-                >
-                  Change username
-                </Button>
-              </Stack>
-            </Grid>
-          </Grid>
+          <p className={style.title}>My profile</p>
+          <Stack className={style.userData}>
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              className={style.data}
+            >
+              <p className={style.info}>{email}</p>
+              <Tooltip title="Your email">
+                <EmailIcon sx={{ fontSize: "35px", color: "white" }} />
+              </Tooltip>
+            </Stack>
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              className={style.data}
+            >
+              <p className={style.info}>{numberTasks}</p>
+              <Tooltip title="Number of tasks assigned to you">
+                <AssignmentIndIcon sx={{ fontSize: "35px", color: "white" }} />
+              </Tooltip>
+            </Stack>
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              className={style.data}
+            >
+              <p className={style.info}>{username}</p>
+              <Tooltip title="Your username">
+                {<PersonIcon sx={{ fontSize: "35px", color: "white" }} />}
+              </Tooltip>
+            </Stack>
+          </Stack>
+          <Stack>
+            <Button
+              className={style.reset}
+              variant="contained"
+              onClick={() => {
+                setLinkSentText("Success! Check email to reset password");
+                resetPassword();
+              }}
+            >
+              Send password reset link
+            </Button>
+            <Button
+              className={style.reset}
+              variant="contained"
+              onClick={() => setOpen(true)}
+            >
+              Change username
+            </Button>
+            <Button
+              className={style.reset}
+              variant="contained"
+              onClick={logOut}
+            >
+              Log out
+            </Button>
+          </Stack>
         </CustomCard>
 
         <Snackbar

@@ -5,6 +5,11 @@
     height: 100%;
     background-color: #917FB3;
 }
+.text{
+    font-size: large;
+    color: #2A2F4F;
+    text-align: center;
+}
 
 .title{
     text-align: center;

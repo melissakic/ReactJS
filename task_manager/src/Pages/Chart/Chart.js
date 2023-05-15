@@ -12,6 +12,9 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import faker from "faker";
+import Stack from "@mui/material/Stack";
+import { useState, useEffect } from "react";
+import { useFetchTasks } from "../../hooks/fetch";
 
 ChartJS.register(
   CategoryScale,
@@ -60,32 +63,34 @@ export const options = {
   },
 };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      backgroundColor: "rgba(255, 99, 0, 0.5)",
-    },
-    {
-      label: "Dataset 2",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
-};
-
 export default function Chart() {
+  const [tasks, setTasks] = useState([]);
+  const fetch = useFetchTasks(setTasks);
+  useEffect(() => {
+    fetch();
+  }, []);
   return (
     <>
       <NavigationBar />
       <div className={style.body}>
         <CustomCard backgroundColor="#2A2F4F">
           <p className={style.title}>Track people efficiency</p>
-          <Bar options={options} data={data} className={style.chart} />;
+          <Stack justifyContent="center" alignItems="center">
+            <Bar
+              options={options}
+              data={{
+                labels: tasks.map((data) => data.title),
+                datasets: [
+                  {
+                    label: "Logged hours",
+                    data: tasks.map((data) => data.loggedTime),
+                    backgroundColor: "rgba(255, 99, 0, 0.5)",
+                  },
+                ],
+              }}
+              className={style.chart}
+            />
+          </Stack>
         </CustomCard>
       </div>
     </>

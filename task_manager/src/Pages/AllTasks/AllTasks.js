@@ -98,9 +98,9 @@ export default function AllTasks() {
                 }}
               >
                 <Stack alignItems="center" justifyContent="center">
-                  <p>{task.title}</p>
+                  <p className={style.text}>{task.title}</p>
                   <p className={style.desc}>{task.description}</p>
-                  <p>{task.email}</p>
+                  <p className={style.text}>{task.email}</p>
                   <p className={style.desc}>Logged time: {task.loggedTime}h</p>
                   <p className={style.desc}>
                     Estimated time: {task.estimatedTime}h

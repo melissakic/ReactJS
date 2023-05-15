@@ -6,6 +6,12 @@
     background-color: #917FB3;
 }
 
+.split{
+    background-color: white;
+    margin-right: 5px !important;
+    margin-left: 5px !important;
+}
+
 .title{
     text-align: center;
     color: white;

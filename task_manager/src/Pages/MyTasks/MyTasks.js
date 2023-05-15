@@ -66,19 +66,19 @@ export default function MyTasks() {
                     <Grid container>
                       <Grid item md={4} xs={12}>
                         <Stack sx={{ textAlign: "center" }}>
-                          <Divider />
+                          <Divider className={style.split} />
                           <Tooltip title="Task created">
                             <p className={style.text}>
                               {dayjs(data.createdDate).format("DD/MM/YYYY")}
                             </p>
                           </Tooltip>
-                          <Divider />
+                          <Divider className={style.split} />
                           <Tooltip title="Task deadline">
                             <p className={style.text}>
                               {dayjs(data.deadline).format("DD/MM/YYYY")}
                             </p>
                           </Tooltip>
-                          <Divider />
+                          <Divider className={style.split} />
                           <IconButton
                             onClick={() => {
                               axios
@@ -96,6 +96,7 @@ export default function MyTasks() {
                             <DeleteIcon
                               sx={{
                                 fontSize: "30px",
+                                color: "white",
                               }}
                             />
                           </IconButton>
@@ -103,15 +104,15 @@ export default function MyTasks() {
                       </Grid>
                       <Grid item md={4} xs={12}>
                         <Stack sx={{ textAlign: "center" }}>
-                          <Divider />
+                          <Divider className={style.split} />
                           <Tooltip title="Hours looged">
                             <p className={style.text}>{data.loggedTime}h</p>
                           </Tooltip>
-                          <Divider />
+                          <Divider className={style.split} />
                           <Tooltip title="Hours estimated">
                             <p className={style.text}>{data.estimatedTime}h</p>
                           </Tooltip>
-                          <Divider />
+                          <Divider className={style.split} />
                           <IconButton
                             onClick={() => {
                               setOpenLog(true);
@@ -122,6 +123,7 @@ export default function MyTasks() {
                               sx={{
                                 fontSize: "30px",
                                 marginX: "20px",
+                                color: "white",
                               }}
                             />
                           </IconButton>
@@ -129,15 +131,15 @@ export default function MyTasks() {
                       </Grid>
                       <Grid item md={4} xs={12}>
                         <Stack sx={{ textAlign: "center" }}>
-                          <Divider />
+                          <Divider className={style.split} />
                           <Tooltip title="Priority">
                             <p className={style.text}>{data.priority}</p>
                           </Tooltip>
-                          <Divider />
+                          <Divider className={style.split} />
                           <Tooltip title="Status">
                             <p className={style.text}>{data.status}</p>
                           </Tooltip>
-                          <Divider />
+                          <Divider className={style.split} />
                           <IconButton
                             onClick={() => {
                               setOpenEdit(true);
@@ -147,6 +149,7 @@ export default function MyTasks() {
                             <EditIcon
                               sx={{
                                 fontSize: "30px",
+                                color: "white",
                               }}
                             />
                           </IconButton>
