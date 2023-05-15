@@ -9,7 +9,6 @@ import { IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Tooltip from "@mui/material/Tooltip";
-import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
 import LogTimeModal from "../../Components/LogTimeModal/LogTimeModal";
 import EditModal from "../../Components/EditModal/EditModal";
@@ -34,7 +33,7 @@ export default function MyTasks() {
 
   useEffect(() => {
     fetch();
-  }, []);
+  }, [fetch]);
 
   return (
     <>
@@ -45,7 +44,7 @@ export default function MyTasks() {
           <Stack spacing={2} alignItems="center" justifyContent="center">
             {tasks.map(
               (data) =>
-                JSON.parse(localStorage.getItem("auth")).email ==
+                JSON.parse(localStorage.getItem("auth")).email ===
                   data.email && (
                   <Card
                     key={data.key}
@@ -87,7 +86,7 @@ export default function MyTasks() {
                                 )
                                 .then(() => {
                                   setTasks((prev) =>
-                                    prev.filter((id) => data.key != id.key)
+                                    prev.filter((id) => data.key !== id.key)
                                   );
                                   fetch();
                                 });

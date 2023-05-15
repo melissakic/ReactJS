@@ -45,7 +45,7 @@ export default function AddModal(props) {
 
   useEffect(() => {
     fetch();
-  }, []);
+  }, [fetch]);
 
   let {
     register,

@@ -1,8 +1,6 @@
 import style from "./Profile.module.css";
 import NavigationBar from "../../UI/NavigationBar/NavigationBar";
 import CustomCard from "../../UI/CustomCard/CustomCard";
-import Grid from "@mui/material/Grid";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useState } from "react";
 import Stack from "@mui/material/Stack";
 import EmailIcon from "@mui/icons-material/Email";
@@ -40,7 +38,7 @@ export default function Profile() {
   };
 
   const changeUsername = () => {
-    if (usernameChanged == null || usernameChanged.length == 0) {
+    if (usernameChanged === null || usernameChanged.length === 0) {
       setError(true);
       return;
     }
@@ -63,7 +61,7 @@ export default function Profile() {
 
   useEffect(() => {
     profileData();
-  }, []);
+  }, [profileData]);
 
   return (
     <>

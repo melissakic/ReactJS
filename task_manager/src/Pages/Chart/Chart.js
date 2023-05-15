@@ -11,7 +11,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import faker from "faker";
 import Stack from "@mui/material/Stack";
 import { useState, useEffect } from "react";
 import { useFetchTasks } from "../../hooks/fetch";
@@ -68,7 +67,7 @@ export default function Chart() {
   const fetch = useFetchTasks(setTasks);
   useEffect(() => {
     fetch();
-  }, []);
+  }, [fetch]);
   return (
     <>
       <NavigationBar />

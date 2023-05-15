@@ -40,7 +40,7 @@ export default function AllTasks() {
 
   useEffect(() => {
     fetch();
-  }, [openAdd]);
+  }, [openAdd, fetch]);
 
   return (
     <>
@@ -87,7 +87,7 @@ export default function AllTasks() {
               <Divider className={style.split} />
             </Grid>
           </Grid>
-          {tasks.length != 0 &&
+          {tasks.length !== 0 &&
             tasks.map((task) => (
               <Card
                 key={task.key}
@@ -137,7 +137,7 @@ export default function AllTasks() {
                               )
                               .then(() => {
                                 setTasks((prev) =>
-                                  prev.filter((id) => task.key != id.key)
+                                  prev.filter((id) => task.key !== id.key)
                                 );
                                 fetch();
                               });
