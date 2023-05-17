@@ -32,8 +32,6 @@ const useAuth = (email, password, setLoader, setError, username) => {
       .catch((error) => {
         setError(true);
         setLoader(false);
-        const errorCode = error.code;
-        const errorMessage = error.message;
         // ..
       });
   };

@@ -10,9 +10,11 @@ import { useNavigate } from "react-router-dom";
 import useLogin from "../../hooks/login";
 import Alert from "@mui/material/Alert";
 import { Backdrop, CircularProgress } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function Login() {
   const navigation = useNavigate();
+  const { t } = useTranslation();
   //Form
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +38,7 @@ export default function Login() {
     <div className={style.body}>
       <CustomCard backgroundColor="#E5BEEC">
         <Stack spacing={3}>
-          <p className={style.welcome}>Welcome back!</p>
+          <p className={style.welcome}>{t("login")}</p>
           <EmailInput register={register} errors={errors} setEmail={setEmail} />
           <PassInput
             register={register}

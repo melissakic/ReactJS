@@ -8,13 +8,24 @@ import TooggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import TooggleButton from "@mui/material/ToggleButton";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import i18n from "../../i18n";
 
 export default function Bar() {
   const navigation = useNavigate();
+  const [lang, setLang] = useState("en");
+  const changeLang = (event) => {
+    setLang(event.target.value);
+    i18n.changeLanguage(event.target.value);
+  };
   return (
     <AppBar position="static" className={style.bar}>
       <Toolbar>
-        <TooggleButtonGroup value="bs" sx={{ backgroundColor: "white" }}>
+        <TooggleButtonGroup
+          value={lang}
+          sx={{ backgroundColor: "white" }}
+          onChange={changeLang}
+        >
           <TooggleButton value="en">English</TooggleButton>
           <TooggleButton value="bs">Bosnian</TooggleButton>
         </TooggleButtonGroup>

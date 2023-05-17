@@ -1,13 +1,15 @@
-import style from './Description.module.css'
+import style from "./Description.module.css";
+import { useTranslation } from "react-i18next";
 
-export default function Description(){
-    return (
-        <div className={style.body_down}>
-        <ul className={style.list}>
-          <li>Plan your tasks</li>
-          <li>Collaborate with colleagues</li>
-          <li>Log time and be efficient</li>
-        </ul>
-      </div>
-    );
+export default function Description() {
+  const { t } = useTranslation();
+  return (
+    <div className={style.body_down}>
+      <ul className={style.list}>
+        <li>{t("firstD")}</li>
+        <li>{t("secondD")}</li>
+        <li>{t("thirdD")}</li>
+      </ul>
+    </div>
+  );
 }
