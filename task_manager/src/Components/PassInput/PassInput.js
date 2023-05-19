@@ -1,7 +1,9 @@
 import style from "./PassInput.module.css";
 import TextField from "@mui/material/TextField";
+import { useTranslation } from "react-i18next";
 
 export default function PassInput(props) {
+  const { t } = useTranslation();
   return (
     <TextField
       {...props.register("password", {
@@ -10,11 +12,7 @@ export default function PassInput(props) {
         minLength: 8,
       })}
       error={props.errors.password ? true : false}
-      label={
-        props.errors.password
-          ? "8 characters long, one uppercase and one number at least"
-          : "Password"
-      }
+      label={props.errors.password ? t("passHelp") : "Password"}
       variant="filled"
       type="password"
       className={style.input}

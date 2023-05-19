@@ -12,9 +12,11 @@ import useAuth from "../../hooks/register";
 import Backdrop from "@mui/material/Backdrop";
 import { CircularProgress } from "@mui/material";
 import Alert from "@mui/material/Alert";
+import { useTranslation } from "react-i18next";
 
 export default function SignUp() {
   const navigation = useNavigate();
+  const { t } = useTranslation();
   //Form
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,7 +42,7 @@ export default function SignUp() {
     <div className={style.body}>
       <CustomCard backgroundColor="#E5BEEC">
         <Stack spacing={3}>
-          <p className={style.welcome}>Join our community!</p>
+          <p className={style.welcome}>{t("signUp")}</p>
           <EmailInput register={register} errors={errors} setEmail={setEmail} />
           <PassInput
             register={register}
@@ -66,11 +68,11 @@ export default function SignUp() {
               navigation("/login");
             }}
           >
-            Go to login
+            {t("go")} login
           </Button>
           {error && (
             <Alert variant="filled" severity="error">
-              Account creation failed, try again later
+              {t("signUpError")}
             </Alert>
           )}
         </Stack>

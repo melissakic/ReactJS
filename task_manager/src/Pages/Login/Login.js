@@ -59,11 +59,11 @@ export default function Login() {
               navigation("/signup");
             }}
           >
-            Go to sign up
+            {t("go")} sign up
           </Button>
           {errorLogin && (
             <Alert variant="filled" severity="error">
-              Account login failed, try again later
+              {t("loginError")}
             </Alert>
           )}
         </Stack>

@@ -14,6 +14,7 @@ import { Bar } from "react-chartjs-2";
 import Stack from "@mui/material/Stack";
 import { useState, useEffect } from "react";
 import { useFetchTasks } from "../../hooks/fetch";
+import { useTranslation } from "react-i18next";
 
 ChartJS.register(
   CategoryScale,
@@ -63,6 +64,7 @@ export const options = {
 };
 
 export default function Chart() {
+  const { t } = useTranslation();
   const [tasks, setTasks] = useState([]);
   const fetch = useFetchTasks(setTasks);
   useEffect(() => {
@@ -70,10 +72,9 @@ export default function Chart() {
   }, [fetch]);
   return (
     <>
-      <NavigationBar />
       <div className={style.body}>
         <CustomCard backgroundColor="#2A2F4F">
-          <p className={style.title}>Track people efficiency</p>
+          <p className={style.title}>{t("chart")}</p>
           <Stack justifyContent="center" alignItems="center">
             <Bar
               options={options}
@@ -81,7 +82,7 @@ export default function Chart() {
                 labels: tasks.map((data) => data.title),
                 datasets: [
                   {
-                    label: "Logged hours",
+                    label: t("logged"),
                     data: tasks.map((data) => data.loggedTime),
                     backgroundColor: "rgba(255, 99, 0, 0.5)",
                   },

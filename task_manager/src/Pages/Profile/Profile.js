@@ -18,8 +18,10 @@ import {
   useResetPass,
   useChangeUsername,
 } from "../../hooks/profile";
+import { useTranslation } from "react-i18next";
 
 export default function Profile() {
+  const { t } = useTranslation();
   const logOut = useLogOut();
   //data
   const [email, setEmail] = useState("example@gmail.com");
@@ -38,7 +40,7 @@ export default function Profile() {
   };
 
   const changeUsername = () => {
-    if (usernameChanged === null || usernameChanged.length === 0) {
+    if (usernameChanged === undefined || usernameChanged.length === 0) {
       setError(true);
       return;
     }
@@ -65,10 +67,9 @@ export default function Profile() {
 
   return (
     <>
-      <NavigationBar />
       <div className={style.body}>
         <CustomCard backgroundColor="#2A2F4F">
-          <p className={style.title}>My profile</p>
+          <p className={style.title}>{t("profile")}</p>
           <Stack className={style.userData}>
             <Stack
               direction="row"
@@ -77,7 +78,7 @@ export default function Profile() {
               className={style.data}
             >
               <p className={style.info}>{email}</p>
-              <Tooltip title="Your email">
+              <Tooltip title={t("emailTooltip")}>
                 <EmailIcon sx={{ fontSize: "35px", color: "white" }} />
               </Tooltip>
             </Stack>
@@ -88,7 +89,7 @@ export default function Profile() {
               className={style.data}
             >
               <p className={style.info}>{numberTasks}</p>
-              <Tooltip title="Number of tasks assigned to you">
+              <Tooltip title={t("tasksTooltip")}>
                 <AssignmentIndIcon sx={{ fontSize: "35px", color: "white" }} />
               </Tooltip>
             </Stack>
@@ -99,7 +100,7 @@ export default function Profile() {
               className={style.data}
             >
               <p className={style.info}>{username}</p>
-              <Tooltip title="Your username">
+              <Tooltip title={t("usernameTooltip")}>
                 {<PersonIcon sx={{ fontSize: "35px", color: "white" }} />}
               </Tooltip>
             </Stack>
@@ -109,25 +110,25 @@ export default function Profile() {
               className={style.reset}
               variant="contained"
               onClick={() => {
-                setLinkSentText("Success! Check email to reset password");
+                setLinkSentText(t("resetPassFeedback"));
                 resetPassword();
               }}
             >
-              Send password reset link
+              {t("resetPass")}
             </Button>
             <Button
               className={style.reset}
               variant="contained"
               onClick={() => setOpen(true)}
             >
-              Change username
+              {t("resetUsername")}
             </Button>
             <Button
               className={style.reset}
               variant="contained"
               onClick={logOut}
             >
-              Log out
+              {t("logOut")}
             </Button>
           </Stack>
         </CustomCard>
@@ -146,7 +147,7 @@ export default function Profile() {
         </Snackbar>
 
         <ResetMod
-          label="Username"
+          label={t("username")}
           open={open}
           onClose={handleClose}
           error={error}

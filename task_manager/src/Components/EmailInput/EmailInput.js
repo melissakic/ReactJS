@@ -1,7 +1,9 @@
+import { useTranslation } from "react-i18next";
 import style from "./EmailInput.module.css";
 import TextField from "@mui/material/TextField";
 
 export default function EmailInput(props) {
+  const { t } = useTranslation();
   return (
     <TextField
       {...props.register("email", {
@@ -9,7 +11,7 @@ export default function EmailInput(props) {
         pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
       })}
       error={props.errors.email ? true : false}
-      label={props.errors.email ? "Enter email in fromat x@x.x" : "Email"}
+      label={props.errors.email ? t("emailHelp") : "Email"}
       variant="filled"
       className={style.input}
       onChange={(event) => {

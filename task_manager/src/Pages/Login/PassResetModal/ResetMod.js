@@ -2,12 +2,14 @@ import style from "./ResetMod.module.css";
 import CustomModal from "../../../UI/Modal/CustomModal";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { useTranslation } from "react-i18next";
 
 export default function ResetMod(props) {
+  const { t } = useTranslation();
   return (
     <CustomModal open={props.open} onClose={props.onClose}>
       <TextField
-        error={props.error}
+        error={props.error ? true : false}
         label={props.label}
         variant="filled"
         className={style.input}
@@ -24,7 +26,7 @@ export default function ResetMod(props) {
           marginTop: "5%",
         }}
       >
-        Send
+        {t("send")}
       </Button>
     </CustomModal>
   );

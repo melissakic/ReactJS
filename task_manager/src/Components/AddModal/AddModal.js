@@ -19,8 +19,10 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useForm } from "react-hook-form";
 import { usePostTask } from "../../hooks/post";
 import { useFetchTasks } from "../../hooks/fetch";
+import { useTranslation } from "react-i18next";
 
 export default function AddModal(props) {
+  const { t } = useTranslation();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [estimatedTime, setEstimatedTime] = useState("");
@@ -69,7 +71,7 @@ export default function AddModal(props) {
           {...register("title", {
             required: true,
           })}
-          label="Title"
+          label={t("title")}
           error={errors.title ? true : false}
           value={title}
           onChange={(event) => {
@@ -77,7 +79,7 @@ export default function AddModal(props) {
           }}
         />
         <TextField
-          label="Description"
+          label={t("description")}
           {...register("desc", {
             required: true,
           })}
@@ -89,7 +91,7 @@ export default function AddModal(props) {
         />
         <TextField
           type="number"
-          label="Estimated time"
+          label={t("estimatedTime")}
           {...register("estimated", {
             required: true,
           })}
@@ -116,14 +118,14 @@ export default function AddModal(props) {
           }}
           sx={{ width: 300 }}
           renderInput={(params) => (
-            <TextField {...params} label="Assign to user" />
+            <TextField {...params} label={t("assignTo")} />
           )}
         />
 
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>
             <DatePicker
-              label="Deadline"
+              label={t("deadline")}
               value={dateAdd}
               onChange={(newValue) => setDateAdd(newValue)}
             />
@@ -163,7 +165,7 @@ export default function AddModal(props) {
             marginTop: "10px",
           }}
         >
-          Save
+          {t("save")}
         </Button>
       </Stack>
     </CustomModal>

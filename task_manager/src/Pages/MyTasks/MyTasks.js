@@ -16,8 +16,10 @@ import { useFetchTasks } from "../../hooks/fetch";
 import dayjs from "dayjs";
 import Card from "@mui/material/Card";
 import MoreTimeIcon from "@mui/icons-material/MoreTime";
+import { useTranslation } from "react-i18next";
 
 export default function MyTasks() {
+  const { t } = useTranslation();
   const [tasks, setTasks] = useState([]);
   const fetch = useFetchTasks(setTasks);
   //modals
@@ -37,10 +39,9 @@ export default function MyTasks() {
 
   return (
     <>
-      <NavigationBar />
       <div className={style.body}>
         <CustomCard backgroundColor="#2A2F4F">
-          <p className={style.title}>My tasks</p>
+          <p className={style.title}>{t("pageMyTasks")}</p>
           <Stack spacing={2} alignItems="center" justifyContent="center">
             {tasks.map(
               (data) =>
@@ -55,10 +56,10 @@ export default function MyTasks() {
                     }}
                   >
                     <Stack>
-                      <Tooltip title="Title">
+                      <Tooltip title={t("title")}>
                         <p className={style.main}> {data.title}</p>
                       </Tooltip>
-                      <Tooltip title="Description">
+                      <Tooltip title={t("description")}>
                         <p className={style.main}>{data.description}</p>
                       </Tooltip>
                     </Stack>
@@ -66,13 +67,13 @@ export default function MyTasks() {
                       <Grid item md={4} xs={12}>
                         <Stack sx={{ textAlign: "center" }}>
                           <Divider className={style.split} />
-                          <Tooltip title="Task created">
+                          <Tooltip title={t("taskCreated")}>
                             <p className={style.text}>
                               {dayjs(data.createdDate).format("DD/MM/YYYY")}
                             </p>
                           </Tooltip>
                           <Divider className={style.split} />
-                          <Tooltip title="Task deadline">
+                          <Tooltip title={t("taskDeadline")}>
                             <p className={style.text}>
                               {dayjs(data.deadline).format("DD/MM/YYYY")}
                             </p>
@@ -104,11 +105,11 @@ export default function MyTasks() {
                       <Grid item md={4} xs={12}>
                         <Stack sx={{ textAlign: "center" }}>
                           <Divider className={style.split} />
-                          <Tooltip title="Hours looged">
+                          <Tooltip title={t("loggedTime")}>
                             <p className={style.text}>{data.loggedTime}h</p>
                           </Tooltip>
                           <Divider className={style.split} />
-                          <Tooltip title="Hours estimated">
+                          <Tooltip title={t("estimatedTime")}>
                             <p className={style.text}>{data.estimatedTime}h</p>
                           </Tooltip>
                           <Divider className={style.split} />
@@ -131,7 +132,7 @@ export default function MyTasks() {
                       <Grid item md={4} xs={12}>
                         <Stack sx={{ textAlign: "center" }}>
                           <Divider className={style.split} />
-                          <Tooltip title="Priority">
+                          <Tooltip title={t("priority")}>
                             <p className={style.text}>{data.priority}</p>
                           </Tooltip>
                           <Divider className={style.split} />

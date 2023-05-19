@@ -13,8 +13,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import dayjs from "dayjs";
 import { useEdit } from "../../hooks/edit";
+import { useTranslation } from "react-i18next";
 
 export default function EditModal(props) {
+  const { t } = useTranslation();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [estimatedTime, setEstimatedTime] = useState("");
@@ -59,7 +61,7 @@ export default function EditModal(props) {
             onChange={(event) => {
               setTitle(event.target.value);
             }}
-            label="Title"
+            label={t("title")}
             sx={{ marginX: "5px" }}
           />
           <TextField
@@ -71,14 +73,14 @@ export default function EditModal(props) {
             onChange={(event) => {
               setDescription(event.target.value);
             }}
-            label="Description"
+            label={t("description")}
             sx={{ marginX: "5px" }}
           />
         </Stack>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>
             <DatePicker
-              label="Task deadline"
+              label={t("taskDeadline")}
               value={dateAdd}
               onChange={(newValue) => setDateAdd(newValue)}
             />
@@ -93,7 +95,7 @@ export default function EditModal(props) {
           onChange={(event) => {
             setEstimatedTime(event.target.value);
           }}
-          label="Estimated time"
+          label={t("estimatedTime")}
           type="number"
           inputProps={{ min: 0 }}
           InputProps={{
@@ -101,7 +103,7 @@ export default function EditModal(props) {
           }}
           sx={{ marginY: "10px" }}
         />
-        <Stack direction="row">
+        <Stack direction="row" spacing={2}>
           <ToggleButtonGroup
             value={priority}
             exclusive
@@ -134,7 +136,7 @@ export default function EditModal(props) {
             marginTop: "10px",
           }}
         >
-          Edit
+          {t("edit")}
         </Button>
       </Stack>
     </CustomModal>

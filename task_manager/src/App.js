@@ -9,21 +9,34 @@ import AllTasks from "./Pages/AllTasks/AllTasks";
 import MyTasks from "./Pages/MyTasks/MyTasks";
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext/auth-context";
+import Bar from "./UI/NavigationBar/NavigationBar";
 
 function App() {
   const ctx = useContext(AuthContext);
-  
+
   let router = createBrowserRouter([
     { path: "/", element: <Present /> },
-    { path: "/login", element: <Login /> },
-    { path: "/signup", element: <SignUp /> },
-    { path: "/profile", element: ctx.user ? <Profile /> : <Login /> },
-    { path: "/chart", element: ctx.user ? <Chart /> : <Login /> },
     {
-      path: "/alltasks",
-      element: ctx.user ? <AllTasks /> : <Login />,
+      path: "/",
+      element: <Bar />,
+      children: [
+        { path: "/profile", element: ctx.user ? <Profile /> : <Login /> },
+        { path: "/chart", element: ctx.user ? <Chart /> : <Login /> },
+        {
+          path: "/alltasks",
+          element: ctx.user ? <AllTasks /> : <Login />,
+        },
+        { path: "/mytasks", element: ctx.user ? <MyTasks /> : <Login /> },
+      ],
     },
-    { path: "/mytasks", element: ctx.user ? <MyTasks /> : <Login /> },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <SignUp />,
+    },
   ]);
 
   return <RouterProvider router={router} />;

@@ -5,8 +5,10 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Stack from "@mui/material/Stack";
 import { useState } from "react";
 import { useEditTime } from "../../hooks/editTime";
+import { useTranslation } from "react-i18next";
 
 export default function LogTimeModal(props) {
+  const { t } = useTranslation();
   const [loggedTime, setLoggedTime] = useState("");
   const editTime = useEditTime(props.editPath, loggedTime, props.setTasks);
   const logTime = () => {
@@ -20,10 +22,11 @@ export default function LogTimeModal(props) {
       <Stack alignItems="center" justifyContent="center">
         <TextField
           sx={{
-            marginX: "40%",
+            marginX: "30%",
             marginTop: "10px",
           }}
           type="number"
+          label={t("logTime")}
           value={loggedTime}
           onChange={(event) => setLoggedTime(event.target.value)}
           inputProps={{ min: 0 }}
@@ -39,7 +42,7 @@ export default function LogTimeModal(props) {
             marginTop: "10px",
           }}
         >
-          Save
+          {t("save")}
         </Button>
       </Stack>
     </CustomModal>

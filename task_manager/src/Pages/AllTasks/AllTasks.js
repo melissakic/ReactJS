@@ -17,8 +17,10 @@ import Card from "@mui/material/Card";
 import { Stack } from "@mui/material";
 import axios from "axios";
 import EditModal from "../../Components/EditModal/EditModal";
+import { useTranslation } from "react-i18next";
 
 export default function AllTasks() {
+  const { t } = useTranslation();
   const [tasks, setTasks] = useState([]);
   //fetch tasks
   const fetch = useFetchTasks(setTasks);
@@ -40,17 +42,16 @@ export default function AllTasks() {
 
   useEffect(() => {
     fetch();
-  }, [openAdd, fetch]);
+  }, [openAdd]);
 
   return (
     <>
-      <NavigationBar />
       <div className={style.body}>
         <CustomCard backgroundColor="#2A2F4F">
-          <p className={style.title}>All tasks</p>
+          <p className={style.title}>{t("allTasks")}</p>
           <Grid container>
             <Grid item md={4} xs={12} sx={{ textAlign: "center" }}>
-              <Tooltip title="Filter and sorting options">
+              <Tooltip title={t("filterTooltip")}>
                 <IconButton
                   onClick={() => {
                     setOpenFilter(true);
@@ -63,7 +64,7 @@ export default function AllTasks() {
               <Divider className={style.split} />
             </Grid>
             <Grid item md={4} xs={12} sx={{ textAlign: "center" }}>
-              <Tooltip title="Refresh tasks">
+              <Tooltip title={t("refreshTooltip")}>
                 <IconButton
                   onClick={() => {
                     fetch();
@@ -75,7 +76,7 @@ export default function AllTasks() {
               <Divider className={style.split} />
             </Grid>
             <Grid item md={4} xs={12} sx={{ textAlign: "center" }}>
-              <Tooltip title="Add new task">
+              <Tooltip title={t("addTooltip")}>
                 <IconButton
                   onClick={() => {
                     setOpenAdd(true);
@@ -101,21 +102,23 @@ export default function AllTasks() {
                   <p className={style.text}>{task.title}</p>
                   <p className={style.desc}>{task.description}</p>
                   <p className={style.text}>{task.email}</p>
-                  <p className={style.desc}>Logged time: {task.loggedTime}h</p>
                   <p className={style.desc}>
-                    Estimated time: {task.estimatedTime}h
+                    {t("loggedTime")}: {task.loggedTime}h
+                  </p>
+                  <p className={style.desc}>
+                    {t("estimatedTime")}: {task.estimatedTime}h
                   </p>
                   <Stack direction="row">
                     <Tooltip title="Status">
                       <p className={style.details}>{task.status}</p>
                     </Tooltip>
-                    <Tooltip title="Priority">
+                    <Tooltip title={t("priority")}>
                       <p className={style.details}>{task.priority}</p>
                     </Tooltip>
                   </Stack>
                   <Grid container>
                     <Grid item md={6} xs={12} sx={{ textAlign: "center" }}>
-                      <Tooltip title="Edit">
+                      <Tooltip title={t("edit")}>
                         <IconButton
                           onClick={() => {
                             setOpenEdit(true);
@@ -128,7 +131,7 @@ export default function AllTasks() {
                       <Divider className={style.split} />
                     </Grid>
                     <Grid item md={6} xs={12} sx={{ textAlign: "center" }}>
-                      <Tooltip title="Delete">
+                      <Tooltip title={t("delete")}>
                         <IconButton
                           onClick={() => {
                             axios

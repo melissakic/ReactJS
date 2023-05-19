@@ -13,8 +13,10 @@ import dayjs from "dayjs";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import CustomModal from "../../UI/Modal/CustomModal";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function FiterModal(props) {
+  const { t } = useTranslation();
   const [date, setDate] = useState(dayjs());
   const [statusFilter, setStatusFilter] = useState("Active");
   const [sort, setSort] = useState("");
@@ -69,7 +71,7 @@ export default function FiterModal(props) {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>
             <DatePicker
-              label="Filter by date"
+              label={t("filterDate")}
               value={date}
               onChange={(newValue) => setDate(newValue)}
             />
@@ -77,16 +79,16 @@ export default function FiterModal(props) {
         </LocalizationProvider>
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
+            <InputLabel id="demo-simple-select-label">{t("sortBy")}</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={sort}
-              label="Sort by"
+              label={t("sortBy")}
               onChange={handleChangeSort}
             >
-              <MenuItem value={"loggedTime"}>Logged hours</MenuItem>
-              <MenuItem value={"estimatedTime"}>Estimated time</MenuItem>
+              <MenuItem value={"loggedTime"}>{t("loggedTime")}</MenuItem>
+              <MenuItem value={"estimatedTime"}>{t("estimatedTime")}</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -99,7 +101,7 @@ export default function FiterModal(props) {
           marginTop: "10px",
         }}
       >
-        Filter
+        {t("filter")}
       </Button>
       <Button
         onClick={applySort}
@@ -109,7 +111,7 @@ export default function FiterModal(props) {
           marginTop: "10px",
         }}
       >
-        Sort
+        {t("sort")}
       </Button>
     </CustomModal>
   );
