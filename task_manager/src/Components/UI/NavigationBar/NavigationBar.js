@@ -9,7 +9,7 @@ import TooggleButton from "@mui/material/ToggleButton";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import i18n from "../../i18n";
+import i18n from "../../../i18n";
 import { Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 

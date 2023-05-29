@@ -1,10 +1,10 @@
-import CustomModal from "../../UI/Modal/CustomModal";
+import CustomModal from "../../Components/UI/Modal/CustomModal";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import Stack from "@mui/material/Stack";
 import { useState } from "react";
-import { useEditTime } from "../../hooks/editTime";
+import { useEditTime } from "../../hooks/edit";
 import { useTranslation } from "react-i18next";
 
 export default function LogTimeModal(props) {

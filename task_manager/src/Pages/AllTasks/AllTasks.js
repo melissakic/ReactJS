@@ -1,5 +1,4 @@
-import CustomCard from "../../UI/CustomCard/CustomCard";
-import NavigationBar from "../../UI/NavigationBar/NavigationBar";
+import CustomCard from "../../Components/UI/CustomCard/CustomCard";
 import { IconButton, Tooltip } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
@@ -18,6 +17,7 @@ import { Stack } from "@mui/material";
 import axios from "axios";
 import EditModal from "../../Components/EditModal/EditModal";
 import { useTranslation } from "react-i18next";
+import dayjs from "dayjs";
 
 export default function AllTasks() {
   const { t } = useTranslation();
@@ -108,12 +108,19 @@ export default function AllTasks() {
                   <p className={style.desc}>
                     {t("estimatedTime")}: {task.estimatedTime}h
                   </p>
+                  <p>
+                    {t("deadline")}: {dayjs(task.deadline).format("DD/MM/YYYY")}
+                  </p>
                   <Stack direction="row">
                     <Tooltip title="Status">
-                      <p className={style.details}>{task.status}</p>
+                      <p className={style.details}>
+                        {t(task.status.toLowerCase())}
+                      </p>
                     </Tooltip>
                     <Tooltip title={t("priority")}>
-                      <p className={style.details}>{task.priority}</p>
+                      <p className={style.details}>
+                        {t(task.priority.toLowerCase())}
+                      </p>
                     </Tooltip>
                   </Stack>
                   <Grid container>

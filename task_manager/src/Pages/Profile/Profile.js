@@ -1,6 +1,5 @@
 import style from "./Profile.module.css";
-import NavigationBar from "../../UI/NavigationBar/NavigationBar";
-import CustomCard from "../../UI/CustomCard/CustomCard";
+import CustomCard from "../../Components/UI/CustomCard/CustomCard";
 import { useState } from "react";
 import Stack from "@mui/material/Stack";
 import EmailIcon from "@mui/icons-material/Email";
@@ -9,15 +8,11 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
 import PersonIcon from "@mui/icons-material/Person";
-import ResetMod from "../Login/PassResetModal/ResetMod";
+import ResetMod from "../../Components/ResetModal/ResetMod";
 import { Snackbar } from "@mui/material";
 import { useEffect } from "react";
-import { useLogOut } from "../../hooks/logOut";
-import {
-  useProfile,
-  useResetPass,
-  useChangeUsername,
-} from "../../hooks/profile";
+import { useLogOut } from "../../hooks/user";
+import { useProfile, useResetPass, useChangeUsername } from "../../hooks/user";
 import { useTranslation } from "react-i18next";
 
 export default function Profile() {
@@ -63,7 +58,7 @@ export default function Profile() {
 
   useEffect(() => {
     profileData();
-  }, [profileData]);
+  }, []);
 
   return (
     <>

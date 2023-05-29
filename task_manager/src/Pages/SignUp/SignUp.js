@@ -1,17 +1,19 @@
 import style from "./SignUp.module.css";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
+import {
+  Stack,
+  Button,
+  Backdrop,
+  CircularProgress,
+  Alert,
+} from "@mui/material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import EmailInput from "../../Components/EmailInput/EmailInput";
 import PassInput from "../../Components/PassInput/PassInput";
-import CustomCard from "../../UI/CustomCard/CustomCard";
+import CustomCard from "../../Components/UI/CustomCard/CustomCard";
 import UsernameInput from "../../Components/CustomInput/Username";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/register";
-import Backdrop from "@mui/material/Backdrop";
-import { CircularProgress } from "@mui/material";
-import Alert from "@mui/material/Alert";
+import { useAuth } from "../../hooks/user";
 import { useTranslation } from "react-i18next";
 
 export default function SignUp() {
@@ -59,7 +61,7 @@ export default function SignUp() {
             variant="contained"
             sx={{ backgroundColor: "#2A2F4F" }}
           >
-            Sign up
+            {t("signUser")}
           </Button>
           <Button
             variant="contained"
@@ -68,7 +70,7 @@ export default function SignUp() {
               navigation("/login");
             }}
           >
-            {t("go")} login
+            {t("go")} {t("logUser")}
           </Button>
           {error && (
             <Alert variant="filled" severity="error">

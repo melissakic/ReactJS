@@ -1,5 +1,5 @@
 import style from "./ResetMod.module.css";
-import CustomModal from "../../../UI/Modal/CustomModal";
+import CustomModal from "../../Components/UI/Modal/CustomModal";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useTranslation } from "react-i18next";

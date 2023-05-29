@@ -10,7 +10,7 @@ export default function UsernameInput(props) {
         required: true,
       })}
       error={props.errors.username ? true : false}
-      label={props.errors.username ? t("inputHelp") : "Username"}
+      label={props.errors.username ? t("inputHelp") : t("username")}
       variant="filled"
       className={style.input}
       onChange={(event) => {

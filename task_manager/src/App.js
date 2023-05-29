@@ -1,15 +1,15 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Present from "./Pages/LandingPage/Present";
-import Login from "./Pages/Login/Login";
-import SignUp from "./Pages/SignUp/SignUp";
-import Profile from "./Pages/Profile/Profile";
-import Chart from "./Pages/Chart/Chart";
-import AllTasks from "./Pages/AllTasks/AllTasks";
-import MyTasks from "./Pages/MyTasks/MyTasks";
+import Present from "./pages/LandingPage/Present";
+import Login from "./pages/Login/Login";
+import SignUp from "./pages/SignUp/SignUp";
+import Profile from "./pages/Profile/Profile";
+import Chart from "./pages/Chart/Chart";
+import AllTasks from "./pages/AllTasks/AllTasks";
+import MyTasks from "./pages/MyTasks/MyTasks";
 import { useContext } from "react";
-import { AuthContext } from "./AuthContext/auth-context";
-import Bar from "./UI/NavigationBar/NavigationBar";
+import { AuthContext } from "./context/AuthContext/auth-context";
+import Bar from "./Components/UI/NavigationBar/NavigationBar";
 
 function App() {
   const ctx = useContext(AuthContext);

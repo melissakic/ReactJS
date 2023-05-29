@@ -1,7 +1,6 @@
 import style from "./MyTasks.module.css";
 import axios from "axios";
-import NavigationBar from "./../../UI/NavigationBar/NavigationBar";
-import CustomCard from "../../UI/CustomCard/CustomCard";
+import CustomCard from "../../Components/UI/CustomCard/CustomCard";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
@@ -133,11 +132,13 @@ export default function MyTasks() {
                         <Stack sx={{ textAlign: "center" }}>
                           <Divider className={style.split} />
                           <Tooltip title={t("priority")}>
-                            <p className={style.text}>{data.priority}</p>
+                            <p className={style.text}>
+                              {t(data.priority.toLowerCase())}
+                            </p>
                           </Tooltip>
                           <Divider className={style.split} />
                           <Tooltip title="Status">
-                            <p className={style.text}>{data.status}</p>
+                            <p className={style.text}>{t(data.status.toLowerCase())}</p>
                           </Tooltip>
                           <Divider className={style.split} />
                           <IconButton

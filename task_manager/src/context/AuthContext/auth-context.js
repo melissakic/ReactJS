@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSecurityContext } from "../hooks/auth";
+import { useSecurityContext } from "../../hooks/auth";
 
 export const AuthContext = React.createContext({
   user: false,

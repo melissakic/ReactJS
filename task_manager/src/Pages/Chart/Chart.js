@@ -1,6 +1,5 @@
 import style from "./Chart.module.css";
-import NavigationBar from "../../UI/NavigationBar/NavigationBar";
-import CustomCard from "../../UI/CustomCard/CustomCard";
+import CustomCard from "../../Components/UI/CustomCard/CustomCard";
 import {
   Chart as ChartJS,
   CategoryScale,

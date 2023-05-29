@@ -12,9 +12,9 @@ export default function PassInput(props) {
         minLength: 8,
       })}
       error={props.errors.password ? true : false}
-      label={props.errors.password ? t("passHelp") : "Password"}
+      label={props.errors.password ? t("passHelp") : t("password")}
       variant="filled"
-      type="password"
+      type={t("password")}
       className={style.input}
       onChange={(event) => {
         props.setPassword(event.target.value);

@@ -8,17 +8,12 @@ import PersonIcon from "@mui/icons-material/Person";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import TooggleButton from "@mui/material/ToggleButton";
-import TooggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import i18n from "../../../i18n";
+import { useTranslation } from "react-i18next";
 
 export default function AuthLinks() {
+  const { t } = useTranslation();
   const navigation = useNavigate();
   const [lang, setLang] = useState("en");
-  const changeLang = (event) => {
-    setLang(event.target.value);
-    i18n.changeLanguage(event.target.value);
-  };
   return (
     <Grid container>
       <Grid item xs={12} md={6}>
@@ -33,7 +28,7 @@ export default function AuthLinks() {
                 navigation("/login");
               }}
             >
-              Login
+              {t("logUser")}
             </Button>
           </CardActions>
         </Card>
@@ -50,7 +45,7 @@ export default function AuthLinks() {
                 navigation("/signup");
               }}
             >
-              Sign up
+              {t("signUser")}
             </Button>
           </CardActions>
         </Card>

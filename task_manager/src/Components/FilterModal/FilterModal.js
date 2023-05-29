@@ -11,7 +11,7 @@ import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
 import dayjs from "dayjs";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import CustomModal from "../../UI/Modal/CustomModal";
+import CustomModal from "../../Components/UI/Modal/CustomModal";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -65,8 +65,8 @@ export default function FiterModal(props) {
           onChange={handleChange}
           aria-label="Platform"
         >
-          <ToggleButton value="Active">Active</ToggleButton>
-          <ToggleButton value="Completed">Completed</ToggleButton>
+          <ToggleButton value="Active">{t("active")}</ToggleButton>
+          <ToggleButton value="Completed">{t("completed")}</ToggleButton>
         </ToggleButtonGroup>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>

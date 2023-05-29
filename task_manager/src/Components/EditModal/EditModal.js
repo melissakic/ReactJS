@@ -1,4 +1,4 @@
-import CustomModal from "../../UI/Modal/CustomModal";
+import CustomModal from "../../Components/UI/Modal/CustomModal";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -112,9 +112,9 @@ export default function EditModal(props) {
             }}
             aria-label="Platform"
           >
-            <ToggleButton value="High">High</ToggleButton>
-            <ToggleButton value="Medium">Medium</ToggleButton>
-            <ToggleButton value="Low">Low</ToggleButton>
+            <ToggleButton value="High">{t("high")}</ToggleButton>
+            <ToggleButton value="Medium">{t("medium")}</ToggleButton>
+            <ToggleButton value="Low">{t("low")}</ToggleButton>
           </ToggleButtonGroup>
           <ToggleButtonGroup
             value={status}
@@ -124,8 +124,8 @@ export default function EditModal(props) {
             }}
             aria-label="Platform"
           >
-            <ToggleButton value="Active">Active</ToggleButton>
-            <ToggleButton value="Completed">Completed</ToggleButton>
+            <ToggleButton value="Active">{t("active")}</ToggleButton>
+            <ToggleButton value="Completed">{t("completed")}</ToggleButton>
           </ToggleButtonGroup>
         </Stack>
         <Button

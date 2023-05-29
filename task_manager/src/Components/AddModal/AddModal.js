@@ -1,4 +1,4 @@
-import CustomModal from "../../UI/Modal/CustomModal";
+import CustomModal from "../../Components/UI/Modal/CustomModal";
 import { useState, useEffect } from "react";
 import { useFetchUsers } from "../../hooks/fetch";
 import dayjs from "dayjs";
@@ -27,16 +27,15 @@ export default function AddModal(props) {
   const [description, setDescription] = useState("");
   const [estimatedTime, setEstimatedTime] = useState("");
   const [allUsers, setUsers] = useState([]);
-  const [value, setValue] = useState("");
-  const fetch = useFetchUsers(setUsers, setValue);
-  const [inputValue, setInputValue] = useState("a");
+  const [inputValue, setInputValue] = useState("");
+  const fetch = useFetchUsers(setUsers, setInputValue);
   const [dateAdd, setDateAdd] = useState(dayjs().add("15", "day"));
   const [statusAdd, setStatusAdd] = useState("Active");
   const [priorityAdd, setPriorityAdd] = useState("Medium");
   const fetchTasks = useFetchTasks(props.setTasks);
   const post = usePostTask(
     title,
-    value,
+    inputValue,
     description,
     estimatedTime,
     dateAdd,
@@ -47,7 +46,7 @@ export default function AddModal(props) {
 
   useEffect(() => {
     fetch();
-  }, [fetch]);
+  }, []);
 
   let {
     register,
@@ -107,15 +106,14 @@ export default function AddModal(props) {
         />
         <Autocomplete
           options={allUsers}
-          value={value}
           onChange={(event, newValue) => {
-            console.log(newValue);
-            setValue(newValue);
+            setInputValue(newValue);
           }}
           inputValue={inputValue}
           onInputChange={(event, newInputValue) => {
             setInputValue(newInputValue);
           }}
+          value={inputValue}
           sx={{ width: 300 }}
           renderInput={(params) => (
             <TextField {...params} label={t("assignTo")} />
@@ -140,8 +138,8 @@ export default function AddModal(props) {
           }}
           aria-label="Platform"
         >
-          <ToggleButton value="Active">Active</ToggleButton>
-          <ToggleButton value="Completed">Completed</ToggleButton>
+          <ToggleButton value="Active">{t("active")}</ToggleButton>
+          <ToggleButton value="Completed">{t("completed")}</ToggleButton>
         </ToggleButtonGroup>
         <ToggleButtonGroup
           color="primary"
@@ -152,9 +150,9 @@ export default function AddModal(props) {
           }}
           aria-label="Platform"
         >
-          <ToggleButton value="High">High</ToggleButton>
-          <ToggleButton value="Medium">Medium</ToggleButton>
-          <ToggleButton value="Low">Low</ToggleButton>
+          <ToggleButton value="High">{t("high")}</ToggleButton>
+          <ToggleButton value="Medium">{t("medium")}</ToggleButton>
+          <ToggleButton value="Low">{t("low")}</ToggleButton>
         </ToggleButtonGroup>
 
         <Button

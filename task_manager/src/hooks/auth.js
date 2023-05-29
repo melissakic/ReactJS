@@ -1,7 +1,7 @@
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { AuthContext } from "../AuthContext/auth-context";
+import { AuthContext } from "../context/AuthContext/auth-context";
 import { useContext } from "react";
 
 const useAuth = (email, password, setLoader, setError) => {

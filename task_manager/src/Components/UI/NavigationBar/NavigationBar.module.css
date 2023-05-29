@@ -1,5 +1,6 @@
 .bar{
     background-color: #2A2F4F !important;
+    box-shadow: -2px 10px 102px -13px rgba(0,0,0,0.48);
 }
 .links{
     margin-left: auto;
